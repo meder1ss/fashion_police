@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="style.css">
     <title>FASHION POLICE</title>
 </head>
 <body>
-<h1>FASHION POLICE</h1><hr>
-<h4>Будь самым модным на районе!</h4>
+<h1 style="text-align:center">FASHION POLICE</h1><hr>
+<h4 style="text-align:center">Будь самым модным на районе!</h4>
 <form action="/" method="get">
     Поиск по одежде: <input type="text" name="title"><br>
     <input type="submit" value="Поиск"/>

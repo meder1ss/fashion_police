@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="style.css">
     <title>FASHION POLICE</title>
 </head>
 <body>
-<h1>FASHION POLICE</h1><hr>
-<h4>Модно, стильно, молодежно!</h4>
+<h1 style="text-align:center">FASHION POLICE</h1><hr>
+<h4 style="text-align:center">Модно, стильно, молодежно!</h4>
 <form action="/selection/create" method="get">
     Ваш пол:<select type="text" name="sex">
         <option value="Женский">Женский</option>
