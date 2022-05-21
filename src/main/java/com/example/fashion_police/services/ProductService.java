@@ -23,19 +23,24 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Product Outfit(String collection, String color, String style, String type) {
-        Product product = complementAnOutfit(collection, color, style, type);
+    public Product Outfit(String sex, String collection, String color, String style, String type) {
+        Product product = complementAnOutfit(sex, collection, color, style, type);
         if (product != null) {
             return product;
         }
         else {
-            product = complementAnOutfit(collection, color,"Повседневный", type);
+            product = complementAnOutfit(sex, collection, color,"Повседневный", type);
             if (product != null) {
                 return product;
             }
             else {
-                product = complementAnOutfit("Деми-сезон", color, "Повседневный", type);
-                return product;
+                product = complementAnOutfit("Унисекс", "Деми-сезон", color, "Повседневный", type);
+                if (product != null) {
+                    return product;
+                }
+                else {
+                    return null;
+                }
             }
         }
     }
@@ -68,10 +73,10 @@ public class ProductService {
         return productRepository.findById(id).orElse(null);
     }
 
-    public Product complementAnOutfit(String collection, String color, String style, String type){
+    public Product complementAnOutfit(String sex, String collection, String color, String style, String type){
         ArrayList<String> complementColors = FashionPoliceApplication.colorstab.get(color);
         for (String newColor : complementColors) {
-            Product complementedOutfit = productRepository.findFirstByCollectionAndTypeAndStyleAndColor(collection, type, style, newColor);
+            Product complementedOutfit = productRepository.findFirstBySexAndCollectionAndTypeAndStyleAndColor(sex, collection, type, style, newColor);
             if (complementedOutfit != null) {
                 return complementedOutfit;
             }

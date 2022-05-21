@@ -12,7 +12,7 @@
 </form>
 <#list products as product>
     <div>
-        <p><b>${product.title}</b> ${product.price} руб. | <a href="/product/${product.id}">Подробнее...</a></p>
+        <p><img src="/images/${product.image.id}" height = "60px"/><b>${product.title}</b> ${product.price} руб. | <a href="/product/${product.id}">Подробнее...</a></p>
     </div>
     <#else>
     <h3>Подходящей одежды не нашлось :(</h3>
@@ -25,6 +25,7 @@
     Описание одежды: <input type="text" name="description"/><br><br>
     Цена: <input type="number" name="price"/><br><br>
     Тип: <input type="text" name="type"/><br><br>
+    Пол: <input type="text" name="sex"/><br><br>
     Фирма: <input type="text" name="company"/><br><br>
     Коллекция: <input type="text" name="collection"/><br><br>
     Стиль: <input type="text" name="style"/><br><br>

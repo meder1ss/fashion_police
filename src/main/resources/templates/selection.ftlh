@@ -7,6 +7,7 @@
 <h1>FASHION POLICE</h1><hr>
 <h4>Модно, стильно, молодежно!</h4>
 <form action="/selection/create" method="get">
+    Ваш пол: <input type="text" name="sex"/><br><br>
     Ваш любимый цвет: <input type="text" name="color"/><br><br>
     Сезон: <input type="text" name="collection"/><br><br>
     Стиль мероприятия: <input type="text" name="style"/><br><br>

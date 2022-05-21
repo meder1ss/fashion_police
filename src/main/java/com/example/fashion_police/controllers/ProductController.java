@@ -28,14 +28,15 @@ public class ProductController {
         return "selection";
     }
     @GetMapping("/selection/create")
-    public String createNewLook(@RequestParam(name = "collection", required = false) String collection,
+    public String createNewLook(@RequestParam(name = "sex", required = false) String sex,
+                                @RequestParam(name = "collection", required = false) String collection,
                                 @RequestParam(name = "color", required = false) String color,
                                 @RequestParam(name = "style", required = false) String style,
                                 Model model) {
         color = translation(color);
-        model.addAttribute("top", productService.Outfit(collection, color, style, "Верх"));
-        model.addAttribute("pants", productService.Outfit(collection, color, style, "Низ"));
-        model.addAttribute("shoes", productService.Outfit(collection, color, style, "Обувь"));
+        model.addAttribute("top", productService.Outfit(sex, collection, color, style, "Верх"));
+        model.addAttribute("pants", productService.Outfit(sex, collection, color, style, "Низ"));
+        model.addAttribute("shoes", productService.Outfit(sex, collection, color, style, "Обувь"));
         return "selection";
     }
     @GetMapping("/product/{id}")

@@ -43,6 +43,8 @@ public class Product {
     private String type;
     @Column(name = "color")
     private String color;
+    @Column(name = "sex")
+    private String sex;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
     private Image image;
