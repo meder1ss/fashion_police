@@ -24,11 +24,29 @@
     Название одежды: <input type="text" name="title"/><br><br>
     Описание одежды: <input type="text" name="description"/><br><br>
     Цена: <input type="number" name="price"/><br><br>
-    Тип: <input type="text" name="type"/><br><br>
-    Пол: <input type="text" name="sex"/><br><br>
+    Тип: <select type="text" name="type">
+        <option value="Верх">Верх</option>
+        <option value="Низ">Низ</option>
+        <option value="Обувь">Обувь</option>
+    </select><br><br>
+    Пол:<select type="text" name="sex">
+        <option value="Женский">Женский</option>
+        <option value="Мужской">Мужской</option>
+    </select><br><br>
     Фирма: <input type="text" name="company"/><br><br>
-    Коллекция: <input type="text" name="collection"/><br><br>
-    Стиль: <input type="text" name="style"/><br><br>
+    Коллекция: <select type="text" name="collection">
+        <option value="Осень">Осень</option>
+        <option value="Зима">Зима</option>
+        <option value="Весна">Весна</option>
+        <option value="Лето">Лето</option>
+        <option value="Деми-сезон">Деми-сезон</option>
+    </select><br><br>
+    Стиль: <select type="text" name="style">
+        <option value="Повседневный">Повседневный</option>
+        <option value="Спортивный">Спортивный</option>
+        <option value="Официальный">Официальный</option>
+        <option value="Вечерний">Вечерний</option>
+    </select><br><br>
     Ваше имя: <input type="text" name="author"/><br><br>
     Фотография: <input type = "file" name = "file"/><br><br>
     <input type="submit" value="Добавить товар"/>

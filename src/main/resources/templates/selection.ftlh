@@ -7,10 +7,21 @@
 <h1>FASHION POLICE</h1><hr>
 <h4>Модно, стильно, молодежно!</h4>
 <form action="/selection/create" method="get">
-    Ваш пол: <input type="text" name="sex"/><br><br>
+    Ваш пол:<select type="text" name="sex">
+        <option value="Женский">Женский</option>
+        <option value="Мужской">Мужской</option> </select><br><br>
     Ваш любимый цвет: <input type="text" name="color"/><br><br>
-    Сезон: <input type="text" name="collection"/><br><br>
-    Стиль мероприятия: <input type="text" name="style"/><br><br>
+    Сезон: <select type="text" name="collection">
+        <option value="Осень">Осень</option>
+        <option value="Зима">Зима</option>
+        <option value="Весна">Весна</option>
+        <option value="Лето">Лето</option>
+        <option value="Деми-сезон">Деми-сезон</option> </select><br><br>
+    Стиль мероприятия: <select type="text" name="style">
+        <option value="Повседневный">Повседневный</option>
+        <option value="Спортивный">Спортивный</option>
+        <option value="Официальный">Официальный</option>
+        <option value="Вечерний">Вечерний</option> </select><br><br>
     <input type="submit" value="Подобрать одежду!"/>
 </form>
 <#if top??>

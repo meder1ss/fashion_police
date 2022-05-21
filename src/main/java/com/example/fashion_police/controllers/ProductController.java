@@ -68,6 +68,15 @@ public class ProductController {
         if (russianColor == "голубой") {
             englishColor = "blue";
         }
+        if (russianColor == "розовый") {
+            englishColor = "pink";
+        }
+        if (russianColor == "бежевый") {
+            englishColor = "beige";
+        }
+        if (russianColor == "коричневый") {
+            englishColor = "brown";
+        }
         if ((russianColor == "зеленый") || (russianColor == "салатовый") || (russianColor == "зелёный")) {
             englishColor = "green";
         }
@@ -92,7 +101,7 @@ public class ProductController {
         if (russianColor == "красный") {
             englishColor = "red";
         }
-        if ((russianColor == "бордовый") || (russianColor == "коричневый") || (russianColor == "бордо")) {
+        if ((russianColor == "бордовый") || (russianColor == "бордо")) {
             englishColor = "maroon";
         }
         if (russianColor == "оранжевый") {
@@ -110,10 +119,7 @@ public class ProductController {
         if ((russianColor == "оливковый") || (russianColor == "охра")){
             englishColor = "olive";
         }
-        if ((russianColor == "розовый") || (russianColor == "фуксия")){
-            englishColor = "fuchsia";
-        }
-        if ((russianColor == "розовый") || (russianColor == "фуксия")){
+        if (russianColor == "фуксия"){
             englishColor = "fuchsia";
         }
         if (russianColor == "аквамарин") {
