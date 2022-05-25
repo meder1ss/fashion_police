@@ -16,10 +16,6 @@
 <b>Фирма: </b>${product.company}<br>
 <b>Коллекция: </b>${product.collection}<br>
 <b>Цвет: </b>${product.color}<br>
-<b>Автор: </b>${product.author}<br>
-<hr>
-<form action="/product/delete/${product.id}" method="post">
-    <input type="submit" value="Удалить товар"/>
-</form>
+<b>Автор: </b>${product.user.name}<br>
 </body>
 </html>
