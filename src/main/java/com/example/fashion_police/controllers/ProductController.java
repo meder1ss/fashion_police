@@ -1,6 +1,7 @@
 package com.example.fashion_police.controllers;
 
 import com.example.fashion_police.models.Product;
+import com.example.fashion_police.models.User;
 import com.example.fashion_police.services.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -18,17 +19,33 @@ import java.security.Principal;
 @RequiredArgsConstructor
 public class ProductController {
     private final ProductService productService;
+
     @GetMapping("/")
-    public String products(@RequestParam(name = "title", required = false) String title, Principal principal, Model model) {
-        model.addAttribute("products", productService.listProducts(title));
+    public String mainPage(Model model, Principal principal) {
         model.addAttribute("user", productService.getUserByPrincipal(principal));
         return "products";
     }
 
+    @GetMapping("/clothing")
+    public String products(@RequestParam(name = "title", required = false) String title, Principal principal, Model model) {
+        model.addAttribute("products", productService.listProducts(title));
+        model.addAttribute("user", productService.getUserByPrincipal(principal));
+        return "clothing";
+    }
+
     @GetMapping("/selection")
-    public String selectOutfit() {
+    public String selectOutfit(Principal principal, Model model) {
+        model.addAttribute("user", productService.getUserByPrincipal(principal));
         return "selection";
     }
+
+    @GetMapping("/about")
+    public String getToMain(Principal principal, Model model) {
+        model.addAttribute("user", productService.getUserByPrincipal(principal));
+        return "about";
+    }
+
+
     @GetMapping("/selection/create")
     public String createNewLook(@RequestParam(name = "sex", required = false) String sex,
                                 @RequestParam(name = "collection", required = false) String collection,
@@ -42,9 +59,10 @@ public class ProductController {
         return "selection";
     }
     @GetMapping("/product/{id}")
-    public String productInfo(@PathVariable Long id, Model model) {
+    public String productInfo(@PathVariable Long id, Principal principal, Model model) {
         Product product = productService.getProductById(id);
         model.addAttribute("product", product);
+        model.addAttribute("user", productService.getUserByPrincipal(principal));
         model.addAttribute("image", product.getImage());
         return "product-info";
     }
@@ -52,14 +70,15 @@ public class ProductController {
     @PostMapping("/product/create")
     public String createProduct(@RequestParam("file") MultipartFile file, Product product, Principal principal) throws IOException {
         productService.saveProduct(principal, product, file);
-        return "redirect:/";
+        return "user-private";
     }
 
     @PostMapping("/product/delete/{id}")
     public String deleteProduct(@PathVariable Long id) {
         productService.deleteProduct(id);
-        return "redirect:/";
+        return "user-private";
     }
+
 
     String translation(String russianColor){
         String englishColor = "white";

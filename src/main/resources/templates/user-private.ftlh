@@ -1,31 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="style.css">
     <title>FASHION POLICE</title>
 </head>
 <body>
-<h1 style="text-align:center">FASHION POLICE </h1><hr>
-<h4 style="text-align:center">Будь самым модным на районе!</h4>
-<form action = "/login">
-    <input type="submit" value="Войти"/>
-</form>
-<form action = "/logout" method = "post">
-    <input type ="hidden" name = "_csrf" value ="${_csrf.token}">
-    <input type="submit" value="Выйти"/>
-</form>
-<form action="/" method="get">
-    Поиск по одежде: <input type="text" name="title"><br>
-    <input type="submit" value="Поиск"/>
-</form>
-<#list products as product>
+<h1>FASHION POLICE</h1><hr>
+<h3>Привет, ${user.name}!</h3>
+<b>Твоя электронная почта: </b> ${user.email}<br>
+<b>Твой номер телефона: </b> ${user.phone_number} <br>
+<h4>Твоя одежда: </h4>
+<#list products as clothing>
     <div>
-        <p><img src="/images/${product.image.id}" height = "60px" width = "60px"/><b>${product.title}</b> ${product.price} руб. | <a href="/product/${product.id}">Подробнее...</a></p>
+        <p><img src="/images/${clothing.image.id}" height = "60px" width = "60px"/><b>${clothing.title}</b> ${clothing.price} руб. | <a href="/product/${clothing.id}">Подробнее...</a>
+        <form action = "/product/delete/${clothing.id}" method = "post">
+            <input type ="hidden" name = "_csrf" value ="${_csrf.token}">
+            <input type="submit" value="Удалить"/>
+        </form>
+        </p>
     </div>
 <#else>
-    <h3>Подходящей одежды не нашлось :(</h3>
+    <h3>Одежды нет! :(</h3>
 </#list>
-<a href="/selection"><input type="submit" value="Подбор одежды"/></a><br>
+<#if errorMessage??>
+    <h2>${errorMessage}</h2>
+</#if>
 <hr>
 <h3>Создать новую одежду</h3>
 <form action="/product/create" method="post" enctype = "multipart/form-data">
@@ -55,9 +53,11 @@
         <option value="Официальный">Официальный</option>
         <option value="Вечерний">Вечерний</option>
     </select><br><br>
-    Ваше имя: <input type="text" name="author"/><br><br>
     Фотография: <input type = "file" name = "file"/><br><br>
+    <input type = "hidden" name = "_csrf" value = "${_csrf.token}">
     <input type="submit" value="Добавить товар"/>
 </form>
+<h4>Твои любимые луки: </h4>
+<i>В разработке...</i>
 </body>
 </html>

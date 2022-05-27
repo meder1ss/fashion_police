@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="@{css\home.css}">
     <title>FASHION POLICE</title>
     <style>
         ul {
@@ -29,11 +29,9 @@
         }
         header {
             display: block;
-            background-image: url("@{static.img/cat.jpg}");
             background-color: #d789a8;
         }
         .header-bg {
-            background-image: url("@{static.img/cat.jpg}");
             height: 405px;
             text-align: center;
         }
@@ -45,11 +43,14 @@
     <h4 style="text-align:center">Будь самым модным на районе!</h4>
     <a style = "text-align: right">
         <#if user.email??>
-            <h5>Привет, <i>${user.name}</i>!</h5>
+            <h5>Привет, <a href = "/user/private/${user.id}"><i>${user.name}</i>!</a></h5>
             <form action = "/logout" method = "post">
                 <input type ="hidden" name = "_csrf" value ="${_csrf.token}">
                 <input style = "background-color: #333; color: white" type="submit" value="Выйти"/>
             </form>
+            <#if user.isAdmin()>
+                <a style = "text-align: right" href = "/admin">Панель администратора</a>
+            </#if>
         <#else>
             <form action ="/login">
                 <input style = "background-color: #333; color: white" type="submit" value="Войти"/>
@@ -58,15 +59,16 @@
     </a>
     <br>
 </header>
-<h style = "text-align: center">
 <ul>
-    <li><a href="/main">Home</a></li>
-    <li><a href="/products">Outfit</a></li>
-    <li><a href="/selection">Constructor</a></li>
-    <li><a href="/about">About</a></li>
+    <li><a href="/">Главная</a></li>
+    <li><a href="/clothing">Наша одежда</a></li>
+    <li><a href="/selection">Подбор</a></li>
+    <li><a href="/about">О нас</a></li>
 </ul>
-</h>
 <br>
+<div style = "background-image: url(http://localhost:8080/images/23)"> aaa </div>
+<h>Але, стиль, прием</h>
+<!--
 <form action="/" method="get">
     Поиск по одежде: <input type="text" name="title"><br>
     <input type="submit" value="Поиск"/>
@@ -113,6 +115,6 @@
     <input type = "hidden" name = "_csrf" value = "${_csrf.token}">
     <input type="submit" value="Добавить товар"/>
 </form>
-</#if>
+</#if>-->
 </body>
 </html>

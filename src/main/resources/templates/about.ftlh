@@ -66,17 +66,6 @@
     <li><a href="/about">О нас</a></li>
 </ul>
 <br>
-<h4>Подробная информация о одежде</h4>
-<img src="/images/${product.image.id}" height = "60px"/><br><br>
-<b>Название одежды: </b>${product.title}<br>
-<b>Описание одежды: </b>${product.description}<br>
-<b>Пол: </b>${product.sex}<br>
-<b>Тип: </b>${product.type}<br>
-<b>Цена: </b>${product.price}<br>
-<b>Стиль: </b>${product.style}<br>
-<b>Фирма: </b>${product.company}<br>
-<b>Коллекция: </b>${product.collection}<br>
-<b>Цвет: </b>${product.color}<br>
-<b>Автор: </b> <a href = "/user/${product.user.id}"> ${product.user.name} </a><br>
+<h3>Что-то о нас</h3>
 </body>
 </html>

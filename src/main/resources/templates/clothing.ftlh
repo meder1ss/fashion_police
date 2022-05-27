@@ -66,17 +66,16 @@
     <li><a href="/about">О нас</a></li>
 </ul>
 <br>
-<h4>Подробная информация о одежде</h4>
-<img src="/images/${product.image.id}" height = "60px"/><br><br>
-<b>Название одежды: </b>${product.title}<br>
-<b>Описание одежды: </b>${product.description}<br>
-<b>Пол: </b>${product.sex}<br>
-<b>Тип: </b>${product.type}<br>
-<b>Цена: </b>${product.price}<br>
-<b>Стиль: </b>${product.style}<br>
-<b>Фирма: </b>${product.company}<br>
-<b>Коллекция: </b>${product.collection}<br>
-<b>Цвет: </b>${product.color}<br>
-<b>Автор: </b> <a href = "/user/${product.user.id}"> ${product.user.name} </a><br>
+<form action="/clothing" method="get">
+    Поиск по одежде: <input type="text" name="title"><br>
+    <input type="submit" value="Поиск"/>
+</form>
+<#list products as product>
+<div>
+    <p><img src="/images/${product.image.id}" height = "60px" width = "60px"/><b>${product.title}</b> ${product.price} руб. | <a href="/product/${product.id}">Подробнее...</a></p>
+</div>
+<#else>
+<h3>Подходящей одежды не нашлось :(</h3>
+</#list>
 </body>
 </html>
