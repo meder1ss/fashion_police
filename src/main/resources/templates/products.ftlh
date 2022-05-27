@@ -1,41 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="@{css\home.css}">
+    <link type = "text/css" href= "/static/css/style.css" rel="stylesheet">
     <title>FASHION POLICE</title>
-    <style>
-        ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: #333;
-        }
-
-        li {
-            float: left;
-        }
-
-        li a {
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-        }
-
-        li a:hover {
-            background-color: #d789a8;
-        }
-        header {
-            display: block;
-            background-color: #d789a8;
-        }
-        .header-bg {
-            height: 405px;
-            text-align: center;
-        }
-    </style>
 </head>
 <body>
 <header>
@@ -66,8 +33,7 @@
     <li><a href="/about">О нас</a></li>
 </ul>
 <br>
-<div style = "background-image: url(http://localhost:8080/images/23)"> aaa </div>
-<h>Але, стиль, прием</h>
+<img src = "../static/img/cat.jpg">
 <!--
 <form action="/" method="get">
     Поиск по одежде: <input type="text" name="title"><br>

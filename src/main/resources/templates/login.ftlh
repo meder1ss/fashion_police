@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>FASHION POLICE</title>
+    <link type = "text/css" rel="stylesheet" href='../static/css/style.css'>
 </head>
 <body>
 <h1>FASHION POLICE</h1><hr>

@@ -21,7 +21,11 @@ li a {
 li a:hover {
     background-color: #d789a8;
 }
-
-.active {
-    background-color: #93e9f8;
+header {
+    display: block;
+    background-color: #d789a8;
+}
+.header-bg {
+    height: 405px;
+    text-align: center;
 }
