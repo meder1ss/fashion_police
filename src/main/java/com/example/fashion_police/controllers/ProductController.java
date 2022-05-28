@@ -68,14 +68,20 @@ public class ProductController {
     }
 
     @PostMapping("/product/create")
-    public String createProduct(@RequestParam("file") MultipartFile file, Product product, Principal principal) throws IOException {
+    public String createProduct(@RequestParam("file") MultipartFile file, Product product, Principal principal, Model model) throws IOException {
         productService.saveProduct(principal, product, file);
+        User user = productService.getUserByPrincipal(principal);
+        model.addAttribute("user",user);
+        model.addAttribute("products", user.getProduct());
         return "user-private";
     }
 
     @PostMapping("/product/delete/{id}")
-    public String deleteProduct(@PathVariable Long id) {
+    public String deleteProduct(@PathVariable Long id, Principal principal, Model model) {
         productService.deleteProduct(id);
+        User user = productService.getUserByPrincipal(principal);
+        model.addAttribute("user", user);
+        model.addAttribute("products", user.getProduct());
         return "user-private";
     }
 

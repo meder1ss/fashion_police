@@ -1,86 +1,77 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link type = "text/css" href= "/static/css/style.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href = "/static/css/style.css" rel = "stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <title>FASHION POLICE</title>
 </head>
+
 <body>
 <header>
-    <h1 style="text-align:center">FASHION POLICE </h1> <hr>
-    <h4 style="text-align:center">Будь самым модным на районе!</h4>
-    <a style = "text-align: right">
-        <#if user.email??>
-            <h5>Привет, <a href = "/user/private/${user.id}"><i>${user.name}</i>!</a></h5>
-            <form action = "/logout" method = "post">
-                <input type ="hidden" name = "_csrf" value ="${_csrf.token}">
-                <input style = "background-color: #333; color: white" type="submit" value="Выйти"/>
-            </form>
-            <#if user.isAdmin()>
-                <a style = "text-align: right" href = "/admin">Панель администратора</a>
-            </#if>
-        <#else>
-            <form action ="/login">
-                <input style = "background-color: #333; color: white" type="submit" value="Войти"/>
-            </form>
-        </#if>
-    </a>
-    <br>
-</header>
-<ul>
-    <li><a href="/">Главная</a></li>
-    <li><a href="/clothing">Наша одежда</a></li>
-    <li><a href="/selection">Подбор</a></li>
-    <li><a href="/about">О нас</a></li>
-</ul>
-<br>
-<img src = "../static/img/cat.jpg">
-<!--
-<form action="/" method="get">
-    Поиск по одежде: <input type="text" name="title"><br>
-    <input type="submit" value="Поиск"/>
-</form>
-<#list products as product>
-    <div>
-        <p><img src="/images/${product.image.id}" height = "60px" width = "60px"/><b>${product.title}</b> ${product.price} руб. | <a href="/product/${product.id}">Подробнее...</a></p>
+<nav class="navbar fixed-top" style="background-color: #fde3e9;">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">FASHION POLICE</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" style="background-color: #fdeef3;">
+            <div class="offcanvas-header">
+                <#if user.email??>
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Привет, <i>${user.name}</i>!</h5>
+                <#else>
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Привет, пользователь!</h5>
+                </#if>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/clothing">Наша одежда</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/selection">Подбор</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">О нас</a>
+                    </li>
+                    <#if user.isAdmin()>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin">Панель администратора</a>
+                        </li>
+                    </#if>
+                    <#if user.email??>
+                        <li class="nav-item">
+                            <a class="nav-link" href = "/user/private/${user.id}">Личный кабинет</a>
+                        </li>
+                        <li class="nav-item" style = "position: absolute; bottom: 15px">
+                            <form action = "/logout" method = "post">
+                                <input type ="hidden" name = "_csrf" value ="${_csrf.token}">
+                                <input style = "background-color: #333; color: white" type="submit" value="Выйти"/>
+                            </form>
+                        </li>
+                    <#else>
+                        <li class="nav-item" style = "position: absolute; bottom: 15px">
+                            <form action ="/login">
+                                <input style = "background-color: #333; color: white" type="submit" value="Войти"/>
+                            </form>
+                        </li>
+                    </#if>
+                </ul>
+            </div>
+        </div>
     </div>
-    <#else>
-    <h3>Подходящей одежды не нашлось :(</h3>
-</#list>
-<a href="/selection"><input type="submit" value="Подбор одежды"/></a><br>
-<#if user.email??>
-<hr>
-<h3>Создать новую одежду</h3>
-<form action="/product/create" method="post" enctype = "multipart/form-data">
-    Название одежды: <input type="text" name="title"/><br><br>
-    Описание одежды: <input type="text" name="description"/><br><br>
-    Цена: <input type="number" name="price"/><br><br>
-    Тип: <select type="text" name="type">
-        <option value="Верх">Верх</option>
-        <option value="Низ">Низ</option>
-        <option value="Обувь">Обувь</option>
-    </select><br><br>
-    Пол:<select type="text" name="sex">
-        <option value="Женский">Женский</option>
-        <option value="Мужской">Мужской</option>
-    </select><br><br>
-    Фирма: <input type="text" name="company"/><br><br>
-    Коллекция: <select type="text" name="collection">
-        <option value="Осень">Осень</option>
-        <option value="Зима">Зима</option>
-        <option value="Весна">Весна</option>
-        <option value="Лето">Лето</option>
-        <option value="Деми-сезон">Деми-сезон</option>
-    </select><br><br>
-    Стиль: <select type="text" name="style">
-        <option value="Повседневный">Повседневный</option>
-        <option value="Спортивный">Спортивный</option>
-        <option value="Официальный">Официальный</option>
-        <option value="Вечерний">Вечерний</option>
-    </select><br><br>
-    Фотография: <input type = "file" name = "file"/><br><br>
-    <input type = "hidden" name = "_csrf" value = "${_csrf.token}">
-    <input type="submit" value="Добавить товар"/>
-</form>
-</#if>-->
+</nav>
+</header>
+<br><br><br>
+<div class="container">
+    Сенебас
+    <img src = "/static/img/cat.jpg">
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
 </html>
