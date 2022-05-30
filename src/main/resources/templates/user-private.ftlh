@@ -31,6 +31,10 @@
     Описание одежды: <input type="text" name="description"/><br><br>
     Цена: <input type="number" name="price"/><br><br>
     Тип: <select type="text" name="type">
+        <option value="Головной убор">Головной убор</option>
+        <option value="Перчатки">Перчатки</option>
+        <option value="Шарф">Шарф</option>
+        <option value="Верхняя одежда">Верхняя одежда</option>
         <option value="Верх">Верх</option>
         <option value="Низ">Низ</option>
         <option value="Обувь">Обувь</option>
@@ -38,6 +42,7 @@
     Пол:<select type="text" name="sex">
         <option value="Женский">Женский</option>
         <option value="Мужской">Мужской</option>
+        <option value="Унисекс">Унисекс</option>
     </select><br><br>
     Фирма: <input type="text" name="company"/><br><br>
     Коллекция: <select type="text" name="collection">

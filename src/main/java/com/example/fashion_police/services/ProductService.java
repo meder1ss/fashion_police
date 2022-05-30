@@ -29,26 +29,785 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Product Outfit(String sex, String collection, String color, String style, String type) {
-        Product product = complementAnOutfit(sex, collection, color, style, type);
-        if (product != null) {
-            return product;
+    public Product Outfit(String sex, String collection, String color, String style, String type, String weather) {
+        if (weather != "") {
+            int weather_int = Integer.parseInt(weather);
+            if (type == "Головной убор") {
+                if (weather_int <= 0) {
+                    Product product = complementAnOutfit(sex, "Зима", color, style, type);
+                    if (product != null) {
+                        return product;
+                    } else {
+                        product = complementAnOutfit(sex, "Зима", color, "Повседневный", type);
+                        if (product != null) {
+                            return product;
+                        } else {
+                            product = complementAnOutfit("Унисекс", "Зима", color, "Повседневный", type);
+                            if (product != null) {
+                                return product;
+                            } else {
+                                return null;
+                            }
+                        }
+                    }
+                }
+                if (weather_int >= 1 && weather_int <= 7) {
+                    Product product = complementAnOutfit(sex, "Осень", color, style, type);
+                    if (product != null) {
+                        return product;
+                    } else {
+                        product = complementAnOutfit(sex, "Осень", color, "Повседневный", type);
+                        if (product != null) {
+                            return product;
+                        } else {
+                            product = complementAnOutfit("Унисекс", "Деми-сезон", color, "Повседневный", type);
+                            if (product != null) {
+                                return product;
+                            } else {
+                                return null;
+                            }
+                        }
+                    }
+                }
+            }
+            if (type == "Шарф") {
+                if (weather_int <= 0) {
+                    Product product = complementAnOutfit(sex, "Зима", color, style, type);
+                    if (product != null) {
+                        return product;
+                    } else {
+                        product = complementAnOutfit(sex, "Зима", color, "Повседневный", type);
+                        if (product != null) {
+                            return product;
+                        } else {
+                            product = complementAnOutfit("Унисекс", "Зима", color, "Повседневный", type);
+                            if (product != null) {
+                                return product;
+                            } else {
+                                return null;
+                            }
+                        }
+                    }
+                }
+                if (weather_int >= 1 && weather_int <= 14) {
+                    Product product = complementAnOutfit(sex, "Осень", color, style, type);
+                    if (product != null) {
+                        return product;
+                    } else {
+                        product = complementAnOutfit(sex, "Осень", color, "Повседневный", type);
+                        if (product != null) {
+                            return product;
+                        } else {
+                            product = complementAnOutfit("Унисекс", "Деми-сезон", color, "Повседневный", type);
+                            if (product != null) {
+                                return product;
+                            } else {
+                                return null;
+                            }
+                        }
+                    }
+                }
+                if (type == "Перчатки") {
+                    if (weather_int <= 0) {
+                        Product product = complementAnOutfit(sex, "Зима", color, style, type);
+                        if (product != null) {
+                            return product;
+                        } else {
+                            product = complementAnOutfit(sex, "Зима", color, "Повседневный", type);
+                            if (product != null) {
+                                return product;
+                            } else {
+                                product = complementAnOutfit("Унисекс", "Зима", color, "Повседневный", type);
+                                if (product != null) {
+                                    return product;
+                                } else {
+                                    return null;
+                                }
+                            }
+                        }
+                    }
+                    if (weather_int >= 1 && weather_int <= 7) {
+                        Product product = complementAnOutfit(sex, "Осень", color, style, type);
+                        if (product != null) {
+                            return product;
+                        } else {
+                            product = complementAnOutfit(sex, "Осень", color, "Повседневный", type);
+                            if (product != null) {
+                                return product;
+                            } else {
+                                product = complementAnOutfit("Унисекс", "Деми-сезон", color, "Повседневный", type);
+                                if (product != null) {
+                                    return product;
+                                } else {
+                                    return null;
+                                }
+                            }
+                        }
+                    }
+                }
+                if (type == "Верхняя одежда") {
+                    if (weather_int <= -20) {
+                        ArrayList<String> outfits = new ArrayList<>(Arrays.asList("Пуховик", "Шуба"));
+                        Product product = complementAnOutfitWithName(outfits, sex, "Зима", color, style, type);
+                        if (product != null) {
+                            return product;
+                        } else {
+                            product = complementAnOutfitWithName(outfits, sex, "Зима", color, "Повседневный", type);
+                            if (product != null) {
+                                return product;
+                            } else {
+                                product = complementAnOutfitWithName(outfits, "Унисекс", "Зима", color, "Повседневный", type);
+                                if (product != null) {
+                                    return product;
+                                } else {
+                                    return null;
+                                }
+                            }
+                        }
+                    }
+                    if (weather_int >= -19 && weather_int <= -10) {
+                        ArrayList<String> outfits = new ArrayList<>(Arrays.asList("Пуховик", "Шуба", "Дубленка"));
+                        Product product = complementAnOutfitWithName(outfits, sex, "Зима", color, style, type);
+                        if (product != null) {
+                            return product;
+                        } else {
+                            product = complementAnOutfitWithName(outfits, sex, "Зима", color, "Повседневный", type);
+                            if (product != null) {
+                                return product;
+                            } else {
+                                product = complementAnOutfitWithName(outfits, "Унисекс", "Зима", color, "Повседневный", type);
+                                if (product != null) {
+                                    return product;
+                                } else {
+                                    return null;
+                                }
+                            }
+                        }
+                    }
+                    if (weather_int >= 9 && weather_int <= 0) {
+                        ArrayList<String> outfits = new ArrayList<>(Arrays.asList("Куртка", "Пуховик", "Дубленка"));
+                        Product product = complementAnOutfitWithName(outfits, sex, "Зима", color, style, type);
+                        if (product != null) {
+                            return product;
+                        } else {
+                            product = complementAnOutfitWithName(outfits, sex, "Зима", color, "Повседневный", type);
+                            if (product != null) {
+                                return product;
+                            } else {
+                                product = complementAnOutfitWithName(outfits, "Унисекс", "Зима", color, "Повседневный", type);
+                                if (product != null) {
+                                    return product;
+                                } else {
+                                    return null;
+                                }
+                            }
+                        }
+                    }
+                    if (weather_int >= 1 && weather_int <= 7) {
+                        ArrayList<String> outfits = new ArrayList<>(Arrays.asList("Куртка", "Дубленка", "Пальто"));
+                        Product product = complementAnOutfitWithName(outfits, sex, "Зима", color, style, type);
+                        if (product != null) {
+                            return product;
+                        } else {
+                            product = complementAnOutfitWithName(outfits, sex, "Зима", color, "Повседневный", type);
+                            if (product != null) {
+                                return product;
+                            } else {
+                                product = complementAnOutfitWithName(outfits, "Унисекс", "Зима", color, "Повседневный", type);
+                                if (product != null) {
+                                    return product;
+                                } else {
+                                    product = complementAnOutfitWithName(outfits, "Унисекс", "Осень", color, "Повседневный", type);
+                                    if (product != null) {
+                                        return product;
+                                    } else {
+                                        return null;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (weather_int >= 8 && weather_int <= 14) {
+                        ArrayList<String> outfits = new ArrayList<>(Arrays.asList("Куртка", "Пальто", "Дубленка", "Плащ"));
+                        Product product = complementAnOutfitWithName(outfits, sex, "Осень", color, style, type);
+                        if (product != null) {
+                            return product;
+                        } else {
+                            product = complementAnOutfitWithName(outfits, sex, "Осень", color, "Повседневный", type);
+                            if (product != null) {
+                                return product;
+                            } else {
+                                product = complementAnOutfitWithName(outfits, "Унисекс", "Осень", color, "Повседневный", type);
+                                if (product != null) {
+                                    return product;
+                                } else {
+                                    product = complementAnOutfit("Унисекс", "Осень", color, "Повседневный", type);
+                                    if (product != null) {
+                                        return product;
+                                    } else {
+                                        return null;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (weather_int >= 15 && weather_int <= 18) {
+                        ArrayList<String> outfits = new ArrayList<>(Arrays.asList("Кожанка", "Кожаная куртка", "Джинсовка", "Джинсовая куртка", "Куртка", "Пальто", "Жакет", "Пиджак", "Блейзер"));
+                        Product product = complementAnOutfitWithName(outfits, sex, "Осень", color, style, type);
+                        if (product != null) {
+                            return product;
+                        } else {
+                            product = complementAnOutfitWithName(outfits, sex, "Деми-сезон", color, "Повседневный", type);
+                            if (product != null) {
+                                return product;
+                            } else {
+                                product = complementAnOutfitWithName(outfits, "Унисекс", "Деми-сезон", color, "Повседневный", type);
+                                if (product != null) {
+                                    return product;
+                                } else {
+                                    product = complementAnOutfit("Унисекс", "Лето", color, "Повседневный", type);
+                                    if (product != null) {
+                                        return product;
+                                    } else {
+                                        return null;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                if (type == "Верх") {
+                    if (weather_int <= -10) {
+                        ArrayList<String> outfits = new ArrayList<>(Arrays.asList("Свитер", "Водолазка"));
+                        Product product = complementAnOutfitWithName(outfits, sex, "Зима", color, style, type);
+                        if (product != null) {
+                            return product;
+                        } else {
+                            product = complementAnOutfitWithName(outfits, sex, "Зима", color, "Повседневный", type);
+                            if (product != null) {
+                                return product;
+                            } else {
+                                product = complementAnOutfitWithName(outfits, "Унисекс", "Зима", color, "Повседневный", type);
+                                if (product != null) {
+                                    return product;
+                                } else {
+                                    product = complementAnOutfit("Унисекс", "Зима", color, "Повседневный", type);
+                                    if (product != null) {
+                                        return product;
+                                    } else {
+                                        return null;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (weather_int <= 0 && weather_int >= -9) {
+                        ArrayList<String> outfits = new ArrayList<>(Arrays.asList("Свитер", "Водолазка", "Джемпер", "Платье"));
+                        Product product = complementAnOutfitWithName(outfits, sex, "Зима", color, style, type);
+                        if (product != null) {
+                            return product;
+                        } else {
+                            product = complementAnOutfitWithName(outfits, sex, "Зима", color, "Повседневный", type);
+                            if (product != null) {
+                                return product;
+                            } else {
+                                product = complementAnOutfitWithName(outfits, "Унисекс", "Зима", color, "Повседневный", type);
+                                if (product != null) {
+                                    return product;
+                                } else {
+                                    product = complementAnOutfit("Унисекс", "Зима", color, "Повседневный", type);
+                                    if (product != null) {
+                                        return product;
+                                    } else {
+                                        return null;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (weather_int <= 7 && weather_int >= 1) {
+                        ArrayList<String> outfits = new ArrayList<>(Arrays.asList("Свитер", "Водолазка", "Джемпер", "Платье", "Толстовка", "Рубашка", "Блузка", "Кофта"));
+                        Product product = complementAnOutfitWithName(outfits, sex, "Зима", color, style, type);
+                        if (product != null) {
+                            return product;
+                        } else {
+                            product = complementAnOutfitWithName(outfits, sex, "Зима", color, "Повседневный", type);
+                            if (product != null) {
+                                return product;
+                            } else {
+                                product = complementAnOutfitWithName(outfits, "Унисекс", "Осень", color, "Повседневный", type);
+                                if (product != null) {
+                                    return product;
+                                } else {
+                                    product = complementAnOutfit("Унисекс", "Зима", color, "Повседневный", type);
+                                    if (product != null) {
+                                        return product;
+                                    } else {
+                                        return null;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (weather_int <= 14 && weather_int >= 8) {
+                        ArrayList<String> outfits = new ArrayList<>(Arrays.asList("Водолазка", "Джемпер", "Платье", "Толстовка", "Рубашка", "Блузка", "Кофта"));
+                        Product product = complementAnOutfitWithName(outfits, sex, "Осень", color, style, type);
+                        if (product != null) {
+                            return product;
+                        } else {
+                            product = complementAnOutfitWithName(outfits, sex, "Осень", color, "Повседневный", type);
+                            if (product != null) {
+                                return product;
+                            } else {
+                                product = complementAnOutfitWithName(outfits, "Унисекс", "Деми-сезон", color, "Повседневный", type);
+                                if (product != null) {
+                                    return product;
+                                } else {
+                                    product = complementAnOutfit("Унисекс", "Осень", color, "Повседневный", type);
+                                    if (product != null) {
+                                        return product;
+                                    } else {
+                                        product = complementAnOutfit("Унисекс", "Деми-сезон", color, "Повседневный", type);
+                                        if (product != null) {
+                                            return product;
+                                        } else {
+                                            return null;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (weather_int <= 18 && weather_int >= 15) {
+                        ArrayList<String> outfits = new ArrayList<>(Arrays.asList("толстовка", "топ", "футболка", "майка", "платье", "рубашка", "блузка", "сарафан"));
+                        Product product = complementAnOutfitWithName(outfits, sex, "Лето", color, style, type);
+                        if (product != null) {
+                            return product;
+                        } else {
+                            product = complementAnOutfitWithName(outfits, sex, "Лето", color, "Повседневный", type);
+                            if (product != null) {
+                                return product;
+                            } else {
+                                product = complementAnOutfitWithName(outfits, "Унисекс", "Деми-сезон", color, "Повседневный", type);
+                                if (product != null) {
+                                    return product;
+                                } else {
+                                    product = complementAnOutfit(sex, "Лето", color, "Повседневный", type);
+                                    if (product != null) {
+                                        return product;
+                                    } else {
+                                        product = complementAnOutfit("Унисекс", "Лето", color, "Повседневный", type);
+                                        if (product != null) {
+                                            return product;
+                                        } else {
+                                            return null;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (weather_int <= 25 && weather_int >= 19) {
+                        ArrayList<String> outfits = new ArrayList<>(Arrays.asList("топ", "футболка", "майка", "платье", "рубашка", "блузка", "сарафан"));
+                        Product product = complementAnOutfitWithName(outfits, sex, "Лето", color, style, type);
+                        if (product != null) {
+                            return product;
+                        } else {
+                            product = complementAnOutfitWithName(outfits, sex, "Лето", color, "Повседневный", type);
+                            if (product != null) {
+                                return product;
+                            } else {
+                                product = complementAnOutfitWithName(outfits, "Унисекс", "Деми-сезон", color, "Повседневный", type);
+                                if (product != null) {
+                                    return product;
+                                } else {
+                                    product = complementAnOutfit(sex, "Лето", color, "Повседневный", type);
+                                    if (product != null) {
+                                        return product;
+                                    } else {
+                                        product = complementAnOutfit("Унисекс", "Лето", color, "Повседневный", type);
+                                        if (product != null) {
+                                            return product;
+                                        } else {
+                                            return null;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (weather_int >= 26) {
+                        ArrayList<String> outfits = new ArrayList<>(Arrays.asList("топ", "футболка", "майка", "платье", "сарафан"));
+                        Product product = complementAnOutfitWithName(outfits, sex, "Лето", color, style, type);
+                        if (product != null) {
+                            return product;
+                        } else {
+                            product = complementAnOutfitWithName(outfits, sex, "Лето", color, "Повседневный", type);
+                            if (product != null) {
+                                return product;
+                            } else {
+                                product = complementAnOutfitWithName(outfits, "Унисекс", "Деми-сезон", color, "Повседневный", type);
+                                if (product != null) {
+                                    return product;
+                                } else {
+                                    product = complementAnOutfit(sex, "Лето", color, "Повседневный", type);
+                                    if (product != null) {
+                                        return product;
+                                    } else {
+                                        product = complementAnOutfit("Унисекс", "Лето", color, "Повседневный", type);
+                                        if (product != null) {
+                                            return product;
+                                        } else {
+                                            return null;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                if (type == "Низ") {
+                    if (weather_int <= -10) {
+                        ArrayList<String> outfits = new ArrayList<>(Arrays.asList("Ватные", "Дутые", "Штаны"));
+                        Product product = complementAnOutfitWithName(outfits, sex, "Зима", color, style, type);
+                        if (product != null) {
+                            return product;
+                        } else {
+                            product = complementAnOutfitWithName(outfits, sex, "Зима", color, "Повседневный", type);
+                            if (product != null) {
+                                return product;
+                            } else {
+                                product = complementAnOutfitWithName(outfits, "Унисекс", "Зима", color, "Повседневный", type);
+                                if (product != null) {
+                                    return product;
+                                } else {
+                                    product = complementAnOutfit("Унисекс", "Зима", color, "Повседневный", type);
+                                    if (product != null) {
+                                        return product;
+                                    } else {
+                                        return null;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (weather_int <= 0 && weather_int >= -9) {
+                        ArrayList<String> outfits = new ArrayList<>(Arrays.asList("Штаны", "Джинсы", "Юбка"));
+                        Product product = complementAnOutfitWithName(outfits, sex, "Зима", color, style, type);
+                        if (product != null) {
+                            return product;
+                        } else {
+                            product = complementAnOutfitWithName(outfits, sex, "Зима", color, "Повседневный", type);
+                            if (product != null) {
+                                return product;
+                            } else {
+                                product = complementAnOutfitWithName(outfits, "Унисекс", "Зима", color, "Повседневный", type);
+                                if (product != null) {
+                                    return product;
+                                } else {
+                                    product = complementAnOutfit("Унисекс", "Зима", color, "Повседневный", type);
+                                    if (product != null) {
+                                        return product;
+                                    } else {
+                                        return null;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (weather_int <= 7 && weather_int >= 1) {
+                        ArrayList<String> outfits = new ArrayList<>(Arrays.asList("Штаны", "Джинсы", "Юбка", "Брюки"));
+                        Product product = complementAnOutfitWithName(outfits, sex, "Зима", color, style, type);
+                        if (product != null) {
+                            return product;
+                        } else {
+                            product = complementAnOutfitWithName(outfits, sex, "Осень", color, style, type);
+                            if (product != null) {
+                                return product;
+                            } else {
+                                product = complementAnOutfitWithName(outfits, sex, "Зима", color, "Повседневный", type);
+                                if (product != null) {
+                                    return product;
+                                } else {
+                                    product = complementAnOutfitWithName(outfits, "Унисекс", "Зима", color, "Повседневный", type);
+                                    if (product != null) {
+                                        return product;
+                                    } else {
+                                        product = complementAnOutfit("Унисекс", "Зима", color, "Повседневный", type);
+                                        if (product != null) {
+                                            return product;
+                                        } else {
+                                            return null;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (weather_int <= 14 && weather_int >= 8) {
+                        ArrayList<String> outfits = new ArrayList<>(Arrays.asList("Штаны", "Джинсы", "Юбка", "Брюки"));
+                        Product product = complementAnOutfitWithName(outfits, sex, "Осень", color, style, type);
+                        if (product != null) {
+                            return product;
+                        } else {
+                            product = complementAnOutfitWithName(outfits, sex, "Осень", color, "Повседневный", type);
+                            if (product != null) {
+                                return product;
+                            } else {
+                                product = complementAnOutfitWithName(outfits, "Унисекс", "Осень", color, "Повседневный", type);
+                                if (product != null) {
+                                    return product;
+                                } else {
+                                    product = complementAnOutfit("Унисекс", "Осень", color, "Повседневный", type);
+                                    if (product != null) {
+                                        return product;
+                                    } else {
+                                        return null;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (weather_int <= 18 && weather_int >= 15) {
+                        ArrayList<String> outfits = new ArrayList<>(Arrays.asList("Штаны", "Джинсы", "Юбка", "Брюки"));
+                        Product product = complementAnOutfitWithName(outfits, sex, "Осень", color, style, type);
+                        if (product != null) {
+                            return product;
+                        } else {
+                            product = complementAnOutfitWithName(outfits, sex, "Лето", color, style, type);
+                            if (product != null) {
+                                return product;
+                            } else {
+                                product = complementAnOutfitWithName(outfits, sex, "Осень", color, "Повседневный", type);
+                                if (product != null) {
+                                    return product;
+                                } else {
+                                    product = complementAnOutfitWithName(outfits, "Унисекс", "Осень", color, "Повседневный", type);
+                                    if (product != null) {
+                                        return product;
+                                    } else {
+                                        product = complementAnOutfit("Унисекс", "Осень", color, "Повседневный", type);
+                                        if (product != null) {
+                                            return product;
+                                        } else {
+                                            return null;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (weather_int <= 25 && weather_int >= 19) {
+                        ArrayList<String> outfits = new ArrayList<>(Arrays.asList("Штаны", "Джинсы", "Юбка", "Брюки", "Шорты"));
+                        Product product = complementAnOutfitWithName(outfits, sex, "Лето", color, style, type);
+                        if (product != null) {
+                            return product;
+                        } else {
+                            product = complementAnOutfitWithName(outfits, sex, "Лето", color, "Повседневный", type);
+                            if (product != null) {
+                                return product;
+                            } else {
+                                product = complementAnOutfitWithName(outfits, "Унисекс", "Лето", color, "Повседневный", type);
+                                if (product != null) {
+                                    return product;
+                                } else {
+                                    product = complementAnOutfit("Унисекс", "Лето", color, "Повседневный", type);
+                                    if (product != null) {
+                                        return product;
+                                    } else {
+                                        return null;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (weather_int >= 26) {
+                        ArrayList<String> outfits = new ArrayList<>(Arrays.asList("Штаны", "Юбка", "Брюки", "Шорты"));
+                        Product product = complementAnOutfitWithName(outfits, sex, "Лето", color, style, type);
+                        if (product != null) {
+                            return product;
+                        } else {
+                            product = complementAnOutfitWithName(outfits, sex, "Лето", color, "Повседневный", type);
+                            if (product != null) {
+                                return product;
+                            } else {
+                                product = complementAnOutfitWithName(outfits, "Унисекс", "Лето", color, "Повседневный", type);
+                                if (product != null) {
+                                    return product;
+                                } else {
+                                    product = complementAnOutfit("Унисекс", "Лето", color, "Повседневный", type);
+                                    if (product != null) {
+                                        return product;
+                                    } else {
+                                        return null;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                if (type == "Обувь") {
+                    if (weather_int <= -20) {
+                        ArrayList<String> outfits = new ArrayList<>(Arrays.asList("Ботинки"));
+                        Product product = complementAnOutfitWithName(outfits, sex, "Зима", color, style, type);
+                        if (product != null) {
+                            return product;
+                        } else {
+                            product = complementAnOutfitWithName(outfits, sex, "Зима", color, "Повседневный", type);
+                            if (product != null) {
+                                return product;
+                            } else {
+                                product = complementAnOutfitWithName(outfits, "Унисекс", "Зима", color, "Повседневный", type);
+                                if (product != null) {
+                                    return product;
+                                } else {
+                                    product = complementAnOutfit("Унисекс", "Зима", color, "Повседневный", type);
+                                    if (product != null) {
+                                        return product;
+                                    } else {
+                                        return null;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (weather_int <= 0 && weather_int >= -19) {
+                        ArrayList<String> outfits = new ArrayList<>(Arrays.asList("Ботинки", "Сапоги"));
+                        Product product = complementAnOutfitWithName(outfits, sex, "Зима", color, style, type);
+                        if (product != null) {
+                            return product;
+                        } else {
+                            product = complementAnOutfitWithName(outfits, sex, "Зима", color, "Повседневный", type);
+                            if (product != null) {
+                                return product;
+                            } else {
+                                product = complementAnOutfitWithName(outfits, "Унисекс", "Зима", color, "Повседневный", type);
+                                if (product != null) {
+                                    return product;
+                                } else {
+                                    product = complementAnOutfit("Унисекс", "Зима", color, "Повседневный", type);
+                                    if (product != null) {
+                                        return product;
+                                    } else {
+                                        return null;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (weather_int <= 7 && weather_int >= 1) {
+                        Product product = complementAnOutfit(sex, "Зима", color, style, type);
+                        if (product != null) {
+                            return product;
+                        } else {
+                            product = complementAnOutfit(sex, "Зима", color, "Повседневный", type);
+                            if (product != null) {
+                                return product;
+                            } else {
+                                product = complementAnOutfit("Унисекс", "Зима", color, "Повседневный", type);
+                                if (product != null) {
+                                    return product;
+                                } else {
+                                    product = complementAnOutfit("Унисекс", "Осень", color, "Повседневный", type);
+                                    if (product != null) {
+                                        return product;
+                                    } else {
+                                        return null;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (weather_int <= 18 && weather_int >= 8) {
+                        Product product = complementAnOutfit(sex, "Осень", color, style, type);
+                        if (product != null) {
+                            return product;
+                        } else {
+                            product = complementAnOutfit(sex, "Осень", color, "Повседневный", type);
+                            if (product != null) {
+                                return product;
+                            } else {
+                                product = complementAnOutfit("Унисекс", "Осень", color, "Повседневный", type);
+                                if (product != null) {
+                                    return product;
+                                } else {
+                                    product = complementAnOutfit("Унисекс", "Лето", color, "Повседневный", type);
+                                    if (product != null) {
+                                        return product;
+                                    } else {
+                                        return null;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (weather_int <= 25 && weather_int >= 19) {
+                        Product product = complementAnOutfit(sex, "Лето", color, style, type);
+                        if (product != null) {
+                            return product;
+                        } else {
+                            product = complementAnOutfit(sex, "Лето", color, "Повседневный", type);
+                            if (product != null) {
+                                return product;
+                            } else {
+                                product = complementAnOutfit("Унисекс", "Лето", color, "Повседневный", type);
+                                if (product != null) {
+                                    return product;
+                                } else {
+                                    return null;
+                                }
+                            }
+                        }
+                    }
+                    if (weather_int >= 26) {
+                        ArrayList<String> outfits = new ArrayList<>(Arrays.asList("Босоножки", "Сандалии"));
+                        Product product = complementAnOutfitWithName(outfits, sex, "Лето", color, style, type);
+                        if (product != null) {
+                            return product;
+                        } else {
+                            product = complementAnOutfitWithName(outfits, sex, "Лето", color, "Повседневный", type);
+                            if (product != null) {
+                                return product;
+                            } else {
+                                product = complementAnOutfitWithName(outfits, "Унисекс", "Лето", color, "Повседневный", type);
+                                if (product != null) {
+                                    return product;
+                                } else {
+                                    product = complementAnOutfit("Унисекс", "Лето", color, "Повседневный", type);
+                                    if (product != null) {
+                                        return product;
+                                    } else {
+                                        return null;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
         else {
-            product = complementAnOutfit(sex, collection, color,"Повседневный", type);
+            Product product = complementAnOutfit(sex, collection, color, style, type);
             if (product != null) {
                 return product;
             }
             else {
-                product = complementAnOutfit("Унисекс", "Деми-сезон", color, "Повседневный", type);
+                product = complementAnOutfit(sex, collection, color,"Повседневный", type);
                 if (product != null) {
                     return product;
                 }
                 else {
-                    return null;
+                    product = complementAnOutfit("Унисекс", "Деми-сезон", color, "Повседневный", type);
+                    if (product != null) {
+                        return product;
+                    }
+                    else {
+                        return null;
+                    }
                 }
             }
         }
+        return null;
     }
 
     public void saveProduct(Principal principal, Product product, MultipartFile file) throws IOException {
@@ -91,6 +850,21 @@ public class ProductService {
             Product complementedOutfit = productRepository.findFirstBySexAndCollectionAndTypeAndStyleAndColor(sex, collection, type, style, newColor);
             if (complementedOutfit != null) {
                 return complementedOutfit;
+            }
+        }
+        return null;
+    }
+
+    public Product complementAnOutfitWithName(ArrayList<String> names, String sex, String collection, String color, String style, String type){
+        ArrayList<String> complementColors = FashionPoliceApplication.colorstab.get(color);
+        for (String newColor : complementColors) {
+            Product complementedOutfit = productRepository.findFirstBySexAndCollectionAndTypeAndStyleAndColor(sex, collection, type, style, newColor);
+            if (complementedOutfit != null) {
+                for (String name: names) {
+                    if ((complementedOutfit.getTitle().toLowerCase()).contains(name.toLowerCase())) {
+                        return complementedOutfit;
+                    }
+                }
             }
         }
         return null;

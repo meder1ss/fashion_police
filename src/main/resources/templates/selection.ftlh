@@ -33,6 +33,8 @@
     <li><a href="/about">О нас</a></li>
 </ul>
 <br>
+<script type="text/javascript" src="/static/js/script.js"></script>
+<!--<button onclick="loadWeather()" id="button">Загрузить weather.json!</button>-->
 <form action="/selection/create" method="get">
     Ваш пол:<select type="text" name="sex">
         <option value="Женский">Женский</option>
@@ -49,8 +51,21 @@
         <option value="Спортивный">Спортивный</option>
         <option value="Официальный">Официальный</option>
         <option value="Вечерний">Вечерний</option> </select><br><br>
+    Погода в градусах: <input type="text" name="weather"/><h>*это поле можно оставить пустым*</h><br><br>
     <input type="submit" value="Подобрать одежду!"/>
 </form>
+<#if hat??>
+    <img src="/images/${hat.image.id}" height = "60px"/><br><br>
+</#if>
+<#if gloves??>
+    <img src="/images/${gloves.image.id}" height = "60px"/><br><br>
+</#if>
+<#if scarf??>
+    <img src="/images/${scarf.image.id}" height = "60px"/><br><br>
+</#if>
+<#if outerwear??>
+    <img src="/images/${outerwear.image.id}" height = "60px"/><br><br>
+</#if>
 <#if top??>
     <img src="/images/${top.image.id}" height = "60px"/><br><br>
     <#else>

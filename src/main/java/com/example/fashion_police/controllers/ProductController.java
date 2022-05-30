@@ -48,14 +48,28 @@ public class ProductController {
 
     @GetMapping("/selection/create")
     public String createNewLook(@RequestParam(name = "sex", required = false) String sex,
-                                @RequestParam(name = "collection", required = false) String collection,
                                 @RequestParam(name = "color", required = false) String color,
+                                @RequestParam(name = "collection", required = false) String collection,
                                 @RequestParam(name = "style", required = false) String style,
+                                @RequestParam(name = "weather", required = false) String weather,
+                                Principal principal,
                                 Model model) {
         color = translation(color);
-        model.addAttribute("top", productService.Outfit(sex, collection, color, style, "Верх"));
-        model.addAttribute("pants", productService.Outfit(sex, collection, color, style, "Низ"));
-        model.addAttribute("shoes", productService.Outfit(sex, collection, color, style, "Обувь"));
+        model.addAttribute("user", productService.getUserByPrincipal(principal));
+        model.addAttribute("hat", productService.Outfit(sex, collection, color, style, "Головной убор", weather));
+        model.addAttribute("gloves", productService.Outfit(sex, collection, color, style, "Перчатки", weather));
+        model.addAttribute("scarf", productService.Outfit(sex, collection, color, style, "Шарф", weather));
+        model.addAttribute("outerwear", productService.Outfit(sex, collection, color, style, "Верхняя одежда", weather));
+        Product top = productService.Outfit(sex, collection, color, style, "Верх", weather);
+        model.addAttribute("top", top);
+        if (top != null) {
+            if ((top.getTitle().toLowerCase()).contains("Платье".toLowerCase()) || (top.getTitle().toLowerCase()).contains("Сарафан".toLowerCase()) || (top.getTitle().toLowerCase()).contains("Туника".toLowerCase())) {
+                model.addAttribute("pants", null);
+            } else {
+                model.addAttribute("pants", productService.Outfit(sex, collection, color, style, "Низ", weather));
+            }
+        }
+        model.addAttribute("shoes", productService.Outfit(sex, collection, color, style, "Обувь", weather));
         return "selection";
     }
     @GetMapping("/product/{id}")

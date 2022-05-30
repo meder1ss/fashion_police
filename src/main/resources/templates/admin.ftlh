@@ -29,7 +29,7 @@
             <th>
                 <form action = "/admin/user/ban/${user.id}" method="post">
                     <input type = "hidden" name ="_csrf" value = "${_csrf.token}">
-                    <#if user.active> true
+                    <#if user.active>
                         <input type = "submit" value = "Бан">
                     <#else>
                         <input type = "submit" value = "Разбан">

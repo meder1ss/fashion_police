@@ -34,5 +34,6 @@
 </ul>
 <br>
 <h3>Что-то о нас</h3>
+<script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Af4a71fa600349466df5425c90edaff2ab8c52deb778af272dacbb795922e0be2&amp;width=500&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>
 </body>
 </html>
