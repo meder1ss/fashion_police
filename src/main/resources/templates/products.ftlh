@@ -6,72 +6,255 @@
     <link href = "/static/css/style.css" rel = "stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <title>FASHION POLICE</title>
+    <link rel="shortcut icon" href="/static/img/title.png" type="image/x-icon">
+
+    <style>
+        h1 {font-size: 18.5pt;}
+        h2 {font-size: 16.85pt;}
+        #footer {text-align:center; color:#777777; border-top:2px solid #888888;}
+
+        body {background-image:url('/static/img/background2.jpg'); font-family:Verdana, sans-serif;}
+        aside {background: #fde3e9; width: 1280px;}
+
+        #table {background-color:#FFFFFF; border:3px solid #888888; width:1280px;}
+
+        #cont {min-height:500px;}
+
+        #content {font-family:Verdana, sans-serif; text-align:justify; padding:15px;}
+
+        .divdiv {text-align:left; color:#800000; font-size: 14.5pt}
+        .mode {text-align:center; color:#C71585; font-size:14.5pt; font-weight: bold;}
+
+        #imgS {margin-left:30px; margin-right:30px;}
+        .imgM {float:right; margin-left:15px; border:2px solid #ddd; border-radius:15px; padding:5px; width:600px;}
+        .imgL {float:left; margin-right:15px; border:1px solid #ddd; border-radius:10px; padding:5px; width:250px;}
+        .imgR {float:right; margin-left:15px; border:1px solid #ddd; border-radius:10px; padding:5px; width:250px;}
+
+        table.text {width:  100%; border-spacing: 0; /* Расстояние между ячейками */}
+        table.text tr td {width: 58%; /* Ширина ячеек */}
+        td.rightcol {text-align: right;}
+    </style>
 </head>
 
 <body>
 <header>
-<nav class="navbar fixed-top" style="background-color: #fde3e9;">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/">FASHION POLICE</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" style="background-color: #fdeef3;">
-            <div class="offcanvas-header">
-                <#if user.email??>
-                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Привет, <i>${user.name}</i>!</h5>
-                <#else>
-                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Привет, пользователь!</h5>
-                </#if>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Главная</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/clothing">Наша одежда</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/selection">Подбор</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/about">О нас</a>
-                    </li>
-                    <#if user.isAdmin()>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/admin">Панель администратора</a>
-                        </li>
-                    </#if>
+    <nav class="navbar fixed-top" style="background-color: #fde3e9;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">FASHION POLICE</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" style="background-color: #fdeef3;">
+                <div class="offcanvas-header">
                     <#if user.email??>
-                        <li class="nav-item">
-                            <a class="nav-link" href = "/user/private/${user.id}">Личный кабинет</a>
-                        </li>
-                        <li class="nav-item" style = "position: absolute; bottom: 15px">
-                            <form action = "/logout" method = "post">
-                                <input type ="hidden" name = "_csrf" value ="${_csrf.token}">
-                                <input style = "background-color: #333; color: white" type="submit" value="Выйти"/>
-                            </form>
-                        </li>
+                        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Привет, <i>${user.name}</i>!</h5>
                     <#else>
-                        <li class="nav-item" style = "position: absolute; bottom: 15px">
-                            <form action ="/login">
-                                <input style = "background-color: #333; color: white" type="submit" value="Войти"/>
-                            </form>
-                        </li>
+                        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Привет, пользователь!</h5>
                     </#if>
-                </ul>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/">Главная</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/clothing">Наша одежда</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/selection">Подбор</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/about">О нас</a>
+                        </li>
+                        <#if user.isAdmin()>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/admin">Панель администратора</a>
+                            </li>
+                        </#if>
+                        <#if user.email??>
+                            <li class="nav-item">
+                                <a class="nav-link" href = "/user/private/${user.id}">Личный кабинет</a>
+                            </li>
+                            <li class="nav-item" style = "position: absolute; bottom: 15px">
+                                <form action = "/logout" method = "post">
+                                    <input type ="hidden" name = "_csrf" value ="${_csrf.token}">
+                                    <input style = "background-color: #333; color: white" type="submit" value="Выйти"/>
+                                </form>
+                            </li>
+                        <#else>
+                            <li class="nav-item" style = "position: absolute; bottom: 15px">
+                                <form action ="/login">
+                                    <input style = "background-color: #333; color: white" type="submit" value="Войти"/>
+                                </form>
+                            </li>
+                        </#if>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-</nav>
+    </nav>
 </header>
 <br><br><br>
-<div class="container">
-    Сенебас
-    <img src = "/static/img/cat.jpg">
-</div>
+
+<table align=center id=table>
+    <tr>
+        <td>
+            <aside>
+                <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" data-bs-interval="10000">
+                            <img src="/static/img/modeSentence.png" class="d-block w-100" alt="Номер 1" id=imgS>
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>First slide label</h5>
+                                <p>Some representative placeholder content for the first slide.</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item" data-bs-interval="2000">
+                            <img src="/static/img/modeSentence.png" class="d-block w-100" alt="Номер 2" id=imgS>
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Second slide label</h5>
+                                <p>Some representative placeholder content for the second slide.</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="/static/img/modeSentence.png" class="d-block w-100" alt="Номер 3" id=imgS>
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Third slide label</h5>
+                                <p>Some representative placeholder content for the third slide.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </aside>
+
+        </td>
+    </tr>
+
+    <tr>
+        <td id=cont>
+            <table>
+                <tr>
+                    <td id=content valign=top>
+
+                        <h3 align=center>Главная: основная тематика нашего сайта.</h3><br>
+
+                        <img src='/static/img/modeMain.jpg' class=imgM>
+                        <p>Понятия моды и стиля существовали у людей еще с древности. Уже в те времена женщины пытались как-то подчеркнуть свою красоту и индивидуальность. Уже тогда начали появляться первые украшения из кости и кожи. Кроме того, женщины пытались обернуться другим куском материи, нежели их соперницы. Это все делалось с одной целью - привлечь к себе внимание мужчины и продолжить свой род.
+                            <br>Именно так началось развитие такого сложного и тонкого искусства в жизни человека, как мода. Ее главной целью всегда было и является помощь при создании уникального, неповторимого образа, подчеркивание красоты и привлекательности.</p>
+                        <br>
+
+                        <div class=divdiv>Мода</div>
+                        <p><b><i>Мода</i></b> (фр. mode, от лат. modus — мера, образ, способ, правило, предписание) — совокупность привычек, ценностей и вкусов, принятых в определённой среде в определённое время; установление идеологии или стиля в какой-либо сфере жизни или культуры. Она определяет популярные на данном отрезке времени стили и типы одежды, направления в искусстве, способы поведения, стиль жизни, господствующие идеи, особенности этикета, архитектуры, литературы и т.д.
+                            <br>Мода изменчива, непостоянна, но она является неким живым импульсом к новизне, к поиску и творчеству. Мода — это смена образов и форм, их, пусть даже временное, но господство, в определенный промежуток времени.
+                            <br>Употребляя слово «мода», мы обычно имеем в виду моду в одежде. Стремительный темп современной жизни требует предельно удобной и в то же время разнообразной и красивой одежды. Основными критериями моды являются функциональность, комплектность, рациональность.
+                            <br>Современная мода отличается большим богатством идей. Она создала для нас благоприятные условия для их выбора, потому что одновременно существуют и одинаково модные и привлекательны разные стили, формы, покрои, разные объемы и длина одежды, широкая цветовая гамма. И это вполне логично, поскольку все люди разные не только по внешним данным, темпераменту, социальному положению, но и просто по своему отношению к моде и одежде. Сегодня в моде ценится индивидуальность, умение приспособить новую идею конкретно для себя.
+                            <br>В наши дни мода, как никогда, отличается демократизмом. Сочетание дешевой футболки и отлично сшитого пиджака уже никого не смущает. Джинсы стали уместны даже в дорогом ресторане. Капризная мода, два раза в год меняющая цветовую гамму коллекций, постоянно подталкивает нас к мысли о необходимости освежить наш гардероб, радикально изменить цвет волос, макияжа, одежды - словом, изменить имидж.
+                            <br>Уникальность моды состоит в том, что она помогает развить вкус, экспериментировать, во всём многообразии искать то, что подходит именно вам. С помощью мира моды можно развивать чувство прекрасного, а уже отточенный вкус поможет определиться с собственным стилем.</p>
+
+                        <div class=divdiv>О стиле</div>
+                        <p><b><i>Стиль</i></b> в переводе с английского и французского означает «манера, линия поведения, образ жизни». По сути, стиль — это внешнее отражение Вашей индивидуальности, Вашего «я». Быть стильным — значит быть самим собой, подчеркивать Ваши и только Ваши неповторимые черты, не играть и не пытаться подражать кому-то.
+                            <br>Стиль складывается из очень многих факторов, за основу стиля важно взять особенности вашей личности, чтобы это выглядело гармонично. Стиль формируют одежда, манеры, образ жизни, возраст, вкусы человека и многое другое.
+                            <br>Самое простое определение стиля звучит как умение выбрать среди модных вещей (одежды, аксессуаров, бижутерии) такие, которые определенным образом соответствуют вашей фигуре, внешности, образу жизни, привычкам и интересам.
+                            <br>Стиль — это, прежде всего, соответствие одежды, обуви и аксессуаров друг другу, времени года, месту проведения того или иного мероприятия или события, на котором вы находитесь, настроению, чертам вашей внешности и характеру. У каждого человека может быть свой стиль, найти который нелегкий труд.
+                            <br>Человек гармоничное создание, и очень важно помнить, что стильный образ — это и есть гармония всех составляющих Вашего внешнего вида. Найти свой стиль, то есть понять и принять самого себя, бывает непросто. Но если Вам это удалось, не важно, самостоятельно или с помощью специалиста, то Вы никогда не променяете это внутреннее ощущение собственной неповторимости на слепое подражание моделям с мировых подиумов.
+
+                            <br>Итак, стиль одежды – это некая совокупность признаков, по которым можно разделить множество вещей, комплектов и одежду, как таковую, на определённые категории или виды.
+                            <br>Стиль зависит от различных факторов, таких как возраст, социальное и материальное положение, национальность и менталитет, образа жизни и работы, музыкальных предпочтений, религиозных убеждений, телосложения и много другого.
+                            <br>И всё же почему так важно определиться, какой стиль близок именно вам? В первую очередь это необходимо для того, чтоб вы чувствовали себя гармонично, чтобы ваше внешнее «Я» отражало ваше внутреннее. Ну и, как приятный бонус, найдя свой стиль, вы не будете теряться в бесконечных рядах с одеждой в магазинах и с легкостью станете осуществлять необходимые покупки, зная, что именно вам требуется.
+                        </p>
+                        <br>
+
+                        <p>В мире существует огромное множество <u>стилистических направлений</u>, среди которых выделяют основные.
+                            <br>Традиционные стили – это <i>классический, повседневный, спортивный и ретро-стиль</i>. Правда, сегодня в чистом виде каждый стиль встречается не так часто. Мода отличается смешением элементов разных стилей, обращается к ассоциациям, передает настроение. Классификация стилей в одежде практически полностью универсальна как для женщин, так и для мужчин, разница в элементах отображения стиля.</p>
+
+                        <a target="_blank" href='/static/img/business.jpg'>
+                            <img src='/static/img/business.jpg' alt="Business" class=imgL>
+                        </a>
+                        <p><b>Деловой или классический стиль</b> характеризуется сдержанностью и лаконичностью, высоким качеством и некой базовостью. Одежда данного стиля особенно хороша для преподавателей и офисных работников, научных конференций и совещаний.
+                            <br>Классический стиль не приемлет внедрения скоротечных трендов, таких как чокер, кроп-топ, рюши и т.д., а также ярких цветов и вызывающих принтов. Черный, серый, бежевый, темно-синий – вот гамма данного стилистического направления. Простой крой и простота деталей, стабильность и умеренная скромность.
+                            <br>Пожалуй, классический стиль – это некая основа и база, он был таким 50 лет назад, сейчас и останется, спустя десятилетия. Это стиль вне времени и моды.</p>
+
+                        <a target="_blank" href='/static/img/casual.jpg'>
+                            <img src='/static/img/casual.jpg' alt="Casual" class=imgR>
+                        </a>
+                        <br>
+                        <p><b>Кэжуал (casual)</b>, пожалуй, одно из самых популярных стилистических направлений среди большинства модниц со всего мира. Не зря же в переводе он звучит, как «повседневный».
+                            <br>Что он из себя представляет? Во-первых, это всегда комфорт и удобство, приятные ткани, не сковывающие фасоны, некая мягкость и гибкость. Ключевыми элементами среди одежды являются: джинсы, рубашки, футболки, свитера, джемпера и толстовки, кроссовки, незамысловатые удобные туфли, балетки и т.д. Такой стиль иногда еще называют американским: именно так в будни ходят голливудские звезды, которых часто снимают папарацци.
+                            <br>Что же касается цветовой гаммы, то она намного разнообразнее, чем в вышеупомянутом классическом стиле, однако яркие неоновые цвета так же неуместны, в отличие от благородного синего, травянисто-зелёного, горчично-желтого и т.д.</p>
+
+                        <a target="_blank" href='/static/img/sport.jpg'>
+                            <img src='/static/img/sport.jpg' alt="Sport" class=imgL>
+                        </a>
+                        <p><b>Спортивный стиль</b> включает в себя спортивные элементы, но никак не одежду для занятий спортом. Толстовки, майки, футболки, мешковатые штаны, прогулочные кроссовки, кеды, кепки и рюкзаки – вот база данного стилистического направления.
+                            <br>Спортивный стиль удобен и комфортен, данная одежда не сковывает движений и не обтягивает фигуру, он создан для активных людей, любящий движение и приключения.
+                            <br>Вполне уместны в нём будут довольно-таки яркие цвета, но в меру, к примеру, вставки на толстовке, или полосы на кроссовках. Украшения же, в свою очередь, стоит выбирать минималистичные и маленькие по размеру, хотя, по возможности, лучше и вовсе отказаться от них, отдавая предпочтение тем же спортивным часам – и аксессуар, и польза, чтоб не опаздывать).</p>
+
+                        <a target="_blank" href='/static/img/retro.jpg'>
+                            <img src='/static/img/retro.jpg' alt="Retro" class=imgR>
+                        </a>
+                        <p>Чаще всего <b>ретро-стиль</b> предпочитают творческие люди и любители женственности, пышных юбок, рубашек, заправленных в юбку с высокой талией, беретов, твидовых и шерстяных тканей, всего того, что было модно десятилетия назад. Ретро, как и классика, не терпит трендов и неоновых цветов, излишней откровенности и смелости.
+                            <br>Отличным дополнением к образу в стиле ретро всегда будут черные стрелки на глазах и алые губы.</p>
+
+
+                        <br>
+
+                        <div class=divdiv>Сочетание моды и психологии</div>
+                        <p>Мода всегда является социальным акцентом определенного стиля одежды, выраженным в массовом предпочтении; стиль одежды, в свою очередь, это конечный итог пяти последовательных культурных слоев:</p>
+                        <ul>
+                            <li>адаптационный (одежда как необходимость),</li>
+                            <li>функциональный (одежда оптимальная для деятельности),</li>
+                            <li>символический (статус),</li>
+                            <li>регуляционный (регулирует взаимоотношения),</li>
+                            <li>индивидуальный (личные предпочтения).</li>
+                        </ul>
+
+                        <p>Исходя из множества (но в то же время упорядоченного) разнообразия стилей, в которых выражается определенный менталитет и идеология, можно проследить определенные типы личности (стили: готический, спортивный, рок, милитари, хиппи, богемный и др.).
+                            Выделяют, например, периодическое, циклическое влияние определенных психотипов на моду:</p>
+                        <ul>
+                            <li>шизотимический костюм (концепция, образ, символика, ассоциации, позиционирование идеалов, полярность: аристократизм и андеграунд),</li>
+                            <li>авторитарный костюм (деловой, строгий стиль, глыбообразный облик как у римских статуй, статус и соответствие),</li>
+                            <li>психастенический костюм (закрытый, объемные изделия, уютные виды тканей, естественность и функциональность, неброские цвета),</li>
+                            <li>ювенильный тип (демократичная, спортивная одежда, толстовки, жилеты, комфортность и свобода, яркие цвета, принты, слоганы),</li>
+                            <li>демонстративный костюм (часто идут наперекор моде, могут быть среди чудаков, фриков, и среди фэшн-икон и законодателей мод, смелый, экстравагантный, запоминающийся вид, контрасты, аксессуары),</li>
+                            <li>сангвинический костюм (гармония, уравновешенность, женственность, чувство цвета, практичность).</li>
+                        </ul>
+                        <p>С точки зрения социально-психологических механизмов, мода основывается на подражании и заражении.</p>
+
+                        <p class=mode>Ваши мода и стиль в ваших руках!</p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td id=footer>
+            <table class="text">
+                <tr>
+                    <td align=center>
+                        <p>&copyВареца М.С. Пашинский А.И. 2022</p>
+                        <p align=center><a href=/poli>Политика конфиденциальности</a></p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+</table>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
 </html>

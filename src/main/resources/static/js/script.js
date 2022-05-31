@@ -18,7 +18,7 @@ function loadWeather(val) {
             } catch (e) {
                 alert( "Некорректный ответ " + e.message );
             }
-            document.getElementById("demo").innerHTML = "Погода в " + val +": " + weather["main"]["temp"];
+            document.getElementById("demo").innerHTML = "Погода в городе " + val +": " + weather["main"]["temp"];
         }
 
     }

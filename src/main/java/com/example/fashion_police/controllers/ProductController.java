@@ -26,6 +26,12 @@ public class ProductController {
         return "products";
     }
 
+    @GetMapping("/poli")
+    public String poli(Model model, Principal principal) {
+        model.addAttribute("user", productService.getUserByPrincipal(principal));
+        return "poli";
+    }
+
     @GetMapping("/clothing")
     public String products(@RequestParam(name = "title", required = false) String title, Principal principal, Model model) {
         model.addAttribute("products", productService.listProducts(title));

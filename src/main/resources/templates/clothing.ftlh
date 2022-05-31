@@ -1,48 +1,224 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link type = "text/css" rel="stylesheet" href='../static/css/style.css'>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href = "/static/css/style.css" rel = "stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <title>FASHION POLICE</title>
+    <link rel="shortcut icon" href="/static/img/title.png" type="image/x-icon">
+
+    <style>
+        h1 {font-size: 18.5pt;}
+        h2 {font-size: 16.85pt;}
+        #footer {text-align:center; color:#777777; border-top:2px solid #888888;}
+
+        body {background-image:url('/static/img/background.jpg'); font-family:Verdana, sans-serif;}
+        aside {background: #fde3e9; width: 1280px;}
+
+        #table {background-color:#FFFFFF; border:3px solid #888888; width:1280px;}
+
+        #cont {min-height:500px;}
+
+        #content {font-family:Verdana, sans-serif; text-align:justify; padding:15px;}
+
+        .divdiv {text-align:left; color:#800000; font-size: 14.5pt}
+        .mode {text-align:center; color:#C71585; font-size:14.5pt; font-weight: bold;}
+
+        #imgS {margin-left:30px; margin-right:30px;}
+        .imgM {float:right; margin-left:15px; border:2px solid #ddd; border-radius:15px; padding:5px; width:600px;}
+        .imgL {float:left; margin-right:15px; border:1px solid #ddd; border-radius:10px; padding:5px; width:250px;}
+        .imgR {float:right; margin-left:15px; border:1px solid #ddd; border-radius:10px; padding:5px; width:250px;}
+
+        table.text {width:  100%; border-spacing: 0; /* Расстояние между ячейками */}
+        table.text tr td {width: 58%; /* Ширина ячеек */}
+        td.rightcol {text-align: right;}
+    </style>
 </head>
+
 <body>
 <header>
-    <h1 style="text-align:center">FASHION POLICE </h1> <hr>
-    <h4 style="text-align:center">Будь самым модным на районе!</h4>
-    <a style = "text-align: right">
-        <#if user.email??>
-            <h5>Привет, <a href = "/user/private/${user.id}"><i>${user.name}</i>!</a></h5>
-            <form action = "/logout" method = "post">
-                <input type ="hidden" name = "_csrf" value ="${_csrf.token}">
-                <input style = "background-color: #333; color: white" type="submit" value="Выйти"/>
-            </form>
-            <#if user.isAdmin()>
-                <a style = "text-align: right" href = "/admin">Панель администратора</a>
-            </#if>
-        <#else>
-            <form action ="/login">
-                <input style = "background-color: #333; color: white" type="submit" value="Войти"/>
-            </form>
-        </#if>
-    </a>
-    <br>
+    <nav class="navbar fixed-top" style="background-color: #fde3e9;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">FASHION POLICE</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" style="background-color: #fdeef3;">
+                <div class="offcanvas-header">
+                    <#if user.email??>
+                        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Привет, <i>${user.name}</i>!</h5>
+                    <#else>
+                        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Привет, пользователь!</h5>
+                    </#if>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/">Главная</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/clothing">Наша одежда</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/selection">Подбор</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/about">О нас</a>
+                        </li>
+                        <#if user.isAdmin()>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/admin">Панель администратора</a>
+                            </li>
+                        </#if>
+                        <#if user.email??>
+                            <li class="nav-item">
+                                <a class="nav-link" href = "/user/private/${user.id}">Личный кабинет</a>
+                            </li>
+                            <li class="nav-item" style = "position: absolute; bottom: 15px">
+                                <form action = "/logout" method = "post">
+                                    <input type ="hidden" name = "_csrf" value ="${_csrf.token}">
+                                    <input style = "background-color: #333; color: white" type="submit" value="Выйти"/>
+                                </form>
+                            </li>
+                        <#else>
+                            <li class="nav-item" style = "position: absolute; bottom: 15px">
+                                <form action ="/login">
+                                    <input style = "background-color: #333; color: white" type="submit" value="Войти"/>
+                                </form>
+                            </li>
+                        </#if>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
 </header>
-<ul>
-    <li><a href="/">Главная</a></li>
-    <li><a href="/clothing">Наша одежда</a></li>
-    <li><a href="/selection">Подбор</a></li>
-    <li><a href="/about">О нас</a></li>
-</ul>
-<br>
-<form action="/clothing" method="get">
-    Поиск по одежде: <input type="text" name="title"><br>
-    <input type="submit" value="Поиск"/>
-</form>
-<#list products as product>
-<div>
-    <p><img src="/images/${product.image.id}" height = "60px" width = "60px"/><b>${product.title}</b> ${product.price} руб. | <a href="/product/${product.id}">Подробнее...</a></p>
-</div>
-<#else>
-<h3>Подходящей одежды не нашлось :(</h3>
-</#list>
+<br><br><br>
+
+
+
+<table align=center id=table>
+    <tr>
+        <td>
+            <aside>
+                <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" data-bs-interval="10000">
+                            <img src="/static/img/modeSentence.png" class="d-block w-100" alt="Номер 1" id=imgS>
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>First slide label</h5>
+                                <p>Some representative placeholder content for the first slide.</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item" data-bs-interval="2000">
+                            <img src="/static/img/modeSentence.png" class="d-block w-100" alt="Номер 2" id=imgS>
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Second slide label</h5>
+                                <p>Some representative placeholder content for the second slide.</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="/static/img/modeSentence.png" class="d-block w-100" alt="Номер 3" id=imgS>
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Third slide label</h5>
+                                <p>Some representative placeholder content for the third slide.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </aside>
+
+        </td>
+    </tr>
+
+    <tr>
+        <td id=content valign=top>
+            <p class=mode>Будь самым модным на районе!</p>
+            <h3 align=center>
+                <form action="/clothing" method="get">
+                    Поиск по одежде на сайте: <input type="text" name="title"><br><br>
+                    <p><input type="submit" value="Поиск"/></p>
+                </form>
+            </h3>
+            <table>
+                <a>   </a><div class="row row-cols-1 row-cols-md-3 g-4">
+                    <#list products as clothing>
+                    <#if clothing?counter % 3 == 0>
+                    <div class="col-sm-4">
+                        <div class="card h-100" style="width: 18em; height: 15rem">
+                            <img src="/images/${clothing.image.id}" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title"><b>${clothing.title}</b></h5>
+                                <h class="card-text">${clothing.description}</h>
+                                <br>
+                                <h class="card-text">Цена: ${clothing.price} руб.</h>
+                                <br>
+                                <a href="/product/${clothing.id}" class="card-link">Подробнее</a>
+                            </div>
+                            <div class="card-footer">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a>    </a><tr class="row row-cols-1 row-cols-md-3 g-4">
+                    <#else>
+                        <div class="col-sm-4">
+                            <div class="card h-100" style="width: 18rem; ">
+                                <img src="/images/${clothing.image.id}" class="card-img-top">
+                                <div class="card-body">
+                                    <h5 class="card-title"><b>${clothing.title}</b></h5>
+                                    <h class="card-text">${clothing.description}</h>
+                                    <br>
+                                    <h class="card-text">Цена: ${clothing.price} руб.</h>
+                                    <br>
+                                    <a href="/product/${clothing.id}" class="card-link">Подробнее</a>
+                                </div>
+                                <div class="card-footer">
+                                </div>
+                            </div>
+                        </div>
+                    </#if>
+                    <#else>
+                        <br>
+                        <h2> <i>К сожалению, одежды нет! :(</i> </h2>
+                    </#list>
+                    <#if errorMessage??>
+                        ${errorMessage}
+                    </#if>
+            </table>
+            <br>
+        </td>
+    </tr>
+
+    <tr>
+        <td id=footer>
+            <table class="text">
+                <tr>
+                    <td align=center><p>&copyВареца М.С. Пашинский А.И. 2022</p>
+                        <p align=center><a href=/poli.ftlh>Политика конфиденциальности</a></p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+</table>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
 </html>

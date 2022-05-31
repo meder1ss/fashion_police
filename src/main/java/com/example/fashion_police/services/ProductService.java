@@ -31,7 +31,7 @@ public class ProductService {
 
     public Product Outfit(String sex, String collection, String color, String style, String type, String weather) {
         if (weather != "") {
-            int weather_int = Integer.parseInt(weather);
+            float weather_int = Float.parseFloat(weather);
             if (type == "Головной убор") {
                 if (weather_int <= 0) {
                     Product product = complementAnOutfit(sex, "Зима", color, style, type);
@@ -146,6 +146,7 @@ public class ProductService {
                     }
                 }
                 if (type == "Верхняя одежда") {
+                    log.info("11111111111111111111111111111111111111111111 \n");
                     if (weather_int <= -20) {
                         ArrayList<String> outfits = new ArrayList<>(Arrays.asList("Пуховик", "Шуба"));
                         Product product = complementAnOutfitWithName(outfits, sex, "Зима", color, style, type);
@@ -254,18 +255,22 @@ public class ProductService {
                     if (weather_int >= 15 && weather_int <= 18) {
                         ArrayList<String> outfits = new ArrayList<>(Arrays.asList("Кожанка", "Кожаная куртка", "Джинсовка", "Джинсовая куртка", "Куртка", "Пальто", "Жакет", "Пиджак", "Блейзер"));
                         Product product = complementAnOutfitWithName(outfits, sex, "Осень", color, style, type);
+                        log.info("11111111111111111111111111111111111111111111 \n");
                         if (product != null) {
                             return product;
                         } else {
                             product = complementAnOutfitWithName(outfits, sex, "Деми-сезон", color, "Повседневный", type);
+                            log.info("111111111111111111111111111111111111111111111 \n");
                             if (product != null) {
                                 return product;
                             } else {
                                 product = complementAnOutfitWithName(outfits, "Унисекс", "Деми-сезон", color, "Повседневный", type);
+                                log.info("111111111111111111111111111111111111111111111 \n");
                                 if (product != null) {
                                     return product;
                                 } else {
                                     product = complementAnOutfit("Унисекс", "Лето", color, "Повседневный", type);
+                                    log.info("111111111111111111111111111111111111111111111 \n");
                                     if (product != null) {
                                         return product;
                                     } else {

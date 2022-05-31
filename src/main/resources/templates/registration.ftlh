@@ -1,90 +1,110 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href = "/static/css/style.css" rel = "stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <title>FASHION POLICE</title>
+    <link rel="shortcut icon" href="/static/img/title.png" type="image/x-icon">
+
+    <style>
+        h1 {font-size: 18.5pt;}
+        h2 {font-size: 16.85pt;}
+
+        body {font-family:Verdana, sans-serif;}
+
+        .mode {text-align:center; color:#C71585; font-size:14.5pt; font-weight: bold;}
+    </style>
 </head>
+
+
 <body>
-<h1>FASHION POLICE</h1><hr>
-<h4>Регистрация</h4>
+<h1 align="center"><i>FASHION POLICE</i></h1><hr>
+<p class=mode>Модно, стильно, молодёжно!</p>
+
+<h3 align="center">Регистрация</h3>
+<br>
+
 <form action="/registration" method="post">
-    Имя пользователя: <input type="text" name="name"><br><br>
-    Эл. почта: <input type="email" name="email"><br><br>
-    Номер телефона: <input type="text" name="phone_number"><br><br>
-    Пароль: <input type="password" name="password"><br><br>
-    <input type="hidden" name="_csrf" value="${_csrf.token}">
-    <input type="submit" value="Зарегестрироваться"/>
+    <table align="center">
+        <tr>
+            <td align="right">
+                <div>
+                    <label class="col-form-label">Имя пользователя: </label>
+                </div>
+            </td>
+            <td align="left">
+                <div>
+                    <input type="text" size=25 maxlength=25 name="name" class="form-control">
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td align="right">
+                <div>
+                    <label for="inputEmail3" class="col-form-label">Email: </label>
+                </div>
+            </td>
+            <td align="left">
+                <div>
+                    <input type="email" size=25 maxlength=25 placeholder="mail@example.com" name="email" class="form-control" id="inputEmail3">
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td align="right">
+                <div>
+                    <label class="col-form-label">Номер телефона: </label>
+                </div>
+            </td>
+            <td align="left">
+                <div>
+                    <input type="text" name="phone_number" placeholder="+7 (900) 123-45-67" pattern="\+7\s?[\(]{0,1}9[0-9]{2}[\)]{0,1}\s?\d{3}[-]{0,1}\d{2}[-]{0,1}\d{2}" class="form-control">
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td align="right">
+                <div>
+                    <label for="inputPassword3" class="col-form-label">Пароль: </label>
+                </div>
+            </td>
+            <td align="left">
+                <div>
+                    <input type="password" size=25 maxlength=25 name="password" class="form-control" id="inputPassword3">
+                </div>
+            </td>
+        </tr>
+
+
+        <tr>
+            <td colspan="2" align="center">
+                <input type="hidden" name="_csrf" value="${_csrf.token}">
+                <input align="center" type="submit" class="btn btn-danger" value="Регистрация"/>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <button type="button" class="btn btn-outline-danger btn-sm">
+                    <a href="/login">Войти</a>
+                </button>
+            </td>
+        </tr>
+
+    </table>
 </form>
+
+<p><a href="../"><b>&#8592; На главную</b></a></p>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
 <#if errorMessage??>
     <h2>${errorMessage}</h2>
 </#if>
+
 </body>
 </html>
-
-<!--
-<header>
-        <#if user.email??>
-            <h5>Привет, <a href = "/user/private/${user.id}"><i>${user.name}</i>!</a></h5>
-            <form action = "/logout" method = "post">
-                <input type ="hidden" name = "_csrf" value ="${_csrf.token}">
-                <input style = "background-color: #333; color: white" type="submit" value="Выйти"/>
-            </form>
-            <#if user.isAdmin()>
-                <a style = "text-align: right" href = "/admin">Панель администратора</a>
-            </#if>
-        <#else>
-            <form action ="/login">
-                <input style = "background-color: #333; color: white" type="submit" value="Войти"/>
-            </form>
-        </#if>
-    </a>
-    <br>
-</header>
-<br>
-<img src = "../static/img/cat.jpg">
-<form action="/" method="get">
-    Поиск по одежде: <input type="text" name="title"><br>
-    <input type="submit" value="Поиск"/>
-</form>
-<#list products as product>
-    <div>
-        <p><img src="/images/${product.image.id}" height = "60px" width = "60px"/><b>${product.title}</b> ${product.price} руб. | <a href="/product/${product.id}">Подробнее...</a></p>
-    </div>
-    <#else>
-    <h3>Подходящей одежды не нашлось :(</h3>
-</#list>
-<a href="/selection"><input type="submit" value="Подбор одежды"/></a><br>
-<#if user.email??>
-<hr>
-<h3>Создать новую одежду</h3>
-<form action="/product/create" method="post" enctype = "multipart/form-data">
-    Название одежды: <input type="text" name="title"/><br><br>
-    Описание одежды: <input type="text" name="description"/><br><br>
-    Цена: <input type="number" name="price"/><br><br>
-    Тип: <select type="text" name="type">
-        <option value="Верх">Верх</option>
-        <option value="Низ">Низ</option>
-        <option value="Обувь">Обувь</option>
-    </select><br><br>
-    Пол:<select type="text" name="sex">
-        <option value="Женский">Женский</option>
-        <option value="Мужской">Мужской</option>
-    </select><br><br>
-    Фирма: <input type="text" name="company"/><br><br>
-    Коллекция: <select type="text" name="collection">
-        <option value="Осень">Осень</option>
-        <option value="Зима">Зима</option>
-        <option value="Весна">Весна</option>
-        <option value="Лето">Лето</option>
-        <option value="Деми-сезон">Деми-сезон</option>
-    </select><br><br>
-    Стиль: <select type="text" name="style">
-        <option value="Повседневный">Повседневный</option>
-        <option value="Спортивный">Спортивный</option>
-        <option value="Официальный">Официальный</option>
-        <option value="Вечерний">Вечерний</option>
-    </select><br><br>
-    Фотография: <input type = "file" name = "file"/><br><br>
-    <input type = "hidden" name = "_csrf" value = "${_csrf.token}">
-    <input type="submit" value="Добавить товар"/>
-</form>
-</#if>-->
