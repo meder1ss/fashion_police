@@ -1,16 +1,11 @@
 package com.example.fashion_police.models;
 
 import com.example.fashion_police.models.enums.Role;
-import com.example.fashion_police.services.ProductService;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.imageio.ImageIO;
 import javax.persistence.*;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.*;
 

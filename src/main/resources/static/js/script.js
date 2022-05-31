@@ -1,36 +1,25 @@
-function loadWeather() {
+function foo() {
+    var val = document.getElementById("city").value;
+    loadWeather(val);
+}
+
+function loadWeather(val) {
     var xhr = new XMLHttpRequest();
-
-    xhr.open('GET', "GET https://api.weather.yandex.ru/v2/informers?" +
-        "lat=55" +
-        "&lon=43" +
-        "&[lang=ru_RU]",true,"2c31de67-b27e-4cb1-9fbc-a64ac8705bd7");
-
+    xhr.open('GET', "http://api.openweathermap.org/data/2.5/weather?q="+val+"&appid=fb8ae5f8ef1ea3eee654aa2d5f522bb8&units=metric",true);
     xhr.send();
 
     xhr.onreadystatechange = function() {
         if (xhr.readyState != 4) return;
-        button.parentNode.removeChild(button);
-        //if (xhr.status != 200) {
-            //alert( xhr.status + ': ' + xhr.statusText );
-        //} else {
+        if (xhr.status != 200) {
+            alert( xhr.status + ': ' + xhr.statusText);
+        } else {
             try {
                 var weather = JSON.parse(xhr.responseText);
             } catch (e) {
                 alert( "Некорректный ответ " + e.message );
             }
-            showWeather(weather);
-        //}
+            document.getElementById("demo").innerHTML = "Погода в " + val +": " + weather["main"]["temp"];
+        }
 
     }
-
-    button.innerHTML = 'Загружаю...';
-    button.disabled = true;
-}
-
-function showWeather(weather) {
-    weather.forEach(function(phone) {
-        var li = list.appendChild(document.createElement('li'));
-        li.innerHTML = weather.name;
-    });
 }
