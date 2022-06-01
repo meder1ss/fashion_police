@@ -155,8 +155,8 @@
                     <p><input type="submit" value="Поиск"/></p>
                 </form>
             </h3>
-            <table>
-                <a>   </a><div class="row row-cols-1 row-cols-md-3 g-4">
+            <table align = center>
+                <div class="row row-cols-1 row-cols-md-3 g-4">
                     <#list products as clothing>
                     <#if clothing?counter % 3 == 0>
                     <div class="col-sm-4">
@@ -175,7 +175,7 @@
                         </div>
                     </div>
                 </div>
-                <a>    </a><tr class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="row row-cols-1 row-cols-md-3 g-4">
                     <#else>
                         <div class="col-sm-4">
                             <div class="card h-100" style="width: 18rem; ">

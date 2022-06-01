@@ -164,31 +164,36 @@
             <table align="center">
                 <form action="/selection/create" method="get">
 
+                    <tr>
+                        <td style="color: grey; text-align: center; font-size: 12pt" colspan="3" >Обязательные поля:</td>
+                    </tr>
                     <tr align="center">
                         <td id="td1">Ваш пол: </td>
                         <td id="td2">
                             <select type="text" name="sex">
+                                <option selected>Выберите...</option>
                                 <option value="Женский">Женский</option>
                                 <option value="Мужской">Мужской</option>
-                            </select> *обязательное поле
+                            </select>
                         </td>
                     </tr>
 
                     <tr>
                         <td id="td1">Ваш любимый цвет: </td>
-                        <td id="td2"><input type="text" name="color"/> *обязательное поле<br></td>
+                        <td id="td2"><input type="text" name="color"/><br></td>
                     </tr>
 
                     <tr>
                         <td id="td1">Сезон: </td>
                         <td id="td2">
                             <select type="text" name="collection">
+                                <option selected>Выберите...</option>
                                 <option value="Осень">Осень</option>
                                 <option value="Зима">Зима</option>
                                 <option value="Весна">Весна</option>
                                 <option value="Лето">Лето</option>
                                 <option value="Деми-сезон">Деми-сезон</option>
-                            </select> *обязательное поле<br>
+                            </select><br>
                         </td>
                     </tr>
                     <tr>
@@ -198,21 +203,31 @@
                         <td id="td1">Стиль мероприятия: </td>
                         <td id="td2">
                             <select type="text" name="style">
+                                <option selected>Выберите...</option>
                                 <option value="Повседневный">Повседневный</option>
                                 <option value="Спортивный">Спортивный</option>
                                 <option value="Официальный">Официальный</option>
                                 <option value="Вечерний">Вечерний</option>
-                            </select> *обязательное поле<br>
+                            </select><br>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="3" style="color: grey; text-align: center; font-size: 12pt">Необязательные поля:</td>
+                    </tr>
+                    <tr>
+                        <td id="td1">Погода в градусах: </td>
+                        <td id="td2"><input type="text" name="weather"/>
+                            <!--тогда одежда подберётся в соответствии с указанным сезоном
+                            ИЛИ вы можете автоматически определить погоду в вашем населенном пункте-->
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2">
-                            Погода в градусах: <input type="text" name="weather"/><h>*это поле можно оставить пустым, тогда одежда подберётся в соответствии с указанным сезоном</h><br><br>
-                            ИЛИ вы можете автоматически определить погоду в вашем населенном пункте: <br>
-                            Город: <input type="text" id="city"/>
-                            <input type = "button" onclick="foo()" value = "Узнать погоду!"/>
-                            <p id="demo"></p> <br>
+                        <td id="td1">Город:</td>
+                        <td id="td2"><input type="text" id="city"/>
+                            <input type = "button" onclick="foo()" value = "Узнать погоду!"/> <p id = "demo"> </p>
                         </td>
+                        <td id="td1"> <h id = "demo"></h> </td>
                     </tr>
                     <tr align="center"><br>
                         <td colspan="2"><p><input type="submit" value="Подобрать!"/></p></td>
@@ -224,32 +239,204 @@
 
     <tr align="center">
         <td colspan="2">
-            <#if hat??>
-                <img src="/images/${hat.image.id}" height = "60px"/><br><br>
+            <#if hat?? && gloves??>
+                <div class="row row-cols-1 row-cols-md-2 g-4">
+                    <div class="col-sm-4">
+                        <div class="card h-60" style="width: 18rem; ">
+                            <div class="card-header"><b>${hat.title}</div>
+                            <a href="/product/${hat.id}"><img src="/images/${hat.image.id}" class="card-img-top"></a>
+                            <div class="card-body"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="card h-60" style="width: 18rem; ">
+                            <div class="card-header"><b>${gloves.title}</div>
+                            <a href="/product/${gloves.id}"><img src="/images/${gloves.image.id}" class="card-img-top"></a>
+                            <div class="card-body"></div>
+                        </div>
+                    </div>
+                </div>
+            <#elseif hat??>
+            <div class="row row-cols-1 row-cols-md-1 g-4">
+                <div class="col-sm-4">
+                    <div class="card h-60" style="width: 18rem; ">
+                        <div class="card-header"><b>${hat.title}</div>
+                        <a href="/product/${hat.id}"><img src="/images/${hat.image.id}" class="card-img-top"></a>
+                        <div class="card-body"></div>
+                    </div>
+                </div>
+            </div>
+            <#elseif gloves??>
+                <div class="row row-cols-1 row-cols-md-1 g-4">
+                    <div class="col-sm-4">
+                        <div class="card h-60" style="width: 18rem; ">
+                            <div class="card-header"><b>${gloves.title}</div>
+                            <a href="/product/${gloves.id}"><img src="/images/${gloves.image.id}" class="card-img-top"></a>
+                            <div class="card-body"></div>
+                        </div>
+                    </div>
+                </div>
             </#if>
-            <#if gloves??>
-                <img src="/images/${gloves.image.id}" height = "60px"/><br><br>
-            </#if>
-            <#if scarf??>
-                <img src="/images/${scarf.image.id}" height = "60px"/><br><br>
-            </#if>
-            <#if outerwear??>
-                <img src="/images/${outerwear.image.id}" height = "60px"/><br><br>
-            </#if>
-            <#if top??>
-                <img src="/images/${top.image.id}" height = "60px"/><br>
+            <#if top?? && outerwear?? && scarf??>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="col-sm-4">
+                    <div class="card h-60" style="width: 18rem; ">
+                        <div class="card-header"><b>${scarf.title}</div>
+                        <a href="/product/${scarf.id}"><img src="/images/${scarf.image.id}" class="card-img-top"></a>
+                        <div class="card-body"></div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card h-60" style="width: 18rem; ">
+                        <div class="card-header"><b>${top.title}</div>
+                        <a href="/product/${top.id}"><img src="/images/${top.image.id}" class="card-img-top"></a>
+                        <div class="card-body"></div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card h-60" style="width: 18rem; ">
+                        <div class="card-header"><b>${outerwear.title}</div>
+                        <a href="/product/${outerwear.id}"><img src="/images/${outerwear.image.id}" class="card-img-top"></a>
+                        <div class="card-body"></div>
+                    </div>
+                </div>
+            </div>
+            <#elseif outerwear?? && scarf??>
+                <div class="row row-cols-1 row-cols-md-2 g-4">
+                    <div class="col-sm-4">
+                        <div class="card h-60" style="width: 18rem; ">
+                            <div class="card-header"><b>${outerwear.title}</div>
+                            <a href="/product/${outerwear.id}"><img src="/images/${outerwear.image.id}" class="card-img-top"></a>
+                            <div class="card-body"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="card h-60" style="width: 18rem; ">
+                            <div class="card-header"><b>${scarf.title}</div>
+                            <a href="/product/${scarf.id}"><img src="/images/${scarf.image.id}" class="card-img-top"></a>
+                            <div class="card-body"></div>
+                        </div>
+                    </div>
+                </div>
+            <#elseif top?? && scarf??>
+                <div class="row row-cols-1 row-cols-md-2 g-4">
+                    <div class="col-sm-4">
+                        <div class="card h-60" style="width: 18rem; ">
+                            <div class="card-header"><b>${top.title}</div>
+                            <a href="/product/${top.id}"><img src="/images/${top.image.id}" class="card-img-top"></a>
+                            <div class="card-body"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="card h-60" style="width: 18rem; ">
+                            <div class="card-header"><b>${scarf.title}</div>
+                            <a href="/product/${scarf.id}"><img src="/images/${scarf.image.id}" class="card-img-top"></a>
+                            <div class="card-body"></div>
+                        </div>
+                    </div>
+                </div>
+            <#elseif outerwear?? && top??>
+                <div class="row row-cols-1 row-cols-md-2 g-4">
+                    <div class="col-sm-4">
+                        <div class="card h-60" style="width: 18rem; ">
+                            <div class="card-header"><b>${outerwear.title}</div>
+                            <a href="/product/${outerwear.id}"><img src="/images/${outerwear.image.id}" class="card-img-top"></a>
+                            <div class="card-body"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="card h-60" style="width: 18rem; ">
+                            <div class="card-header"><b>${top.title}</div>
+                            <a href="/product/${top.id}"><img src="/images/${top.image.id}" class="card-img-top"></a>
+                            <div class="card-body"></div>
+                        </div>
+                    </div>
+                </div>
+            <#elseif outerwear??>
+                <div class="row row-cols-1 row-cols-md-1 g-4">
+                    <div class="col-sm-4">
+                        <div class="card h-60" style="width: 18rem; ">
+                            <div class="card-header"><b>${outerwear.title}</div>
+                            <a href="/product/${outerwear.id}"><img src="/images/${outerwear.image.id}" class="card-img-top"></a>
+                            <div class="card-body"></div>
+                        </div>
+                    </div>
+                </div>
+            <#elseif scarf??>
+                <div class="row row-cols-1 row-cols-md-1 g-4">
+                    <div class="col-sm-4">
+                        <div class="card h-60" style="width: 18rem; ">
+                            <div class="card-header"><b>${scarf.title}</div>
+                            <a href="/product/${scarf.id}"><img src="/images/${scarf.image.id}" class="card-img-top"></a>
+                            <div class="card-body"></div>
+                        </div>
+                    </div>
+                </div>
+            <#elseif top??>
+                <div class="row row-cols-1 row-cols-md-1 g-4">
+                    <div class="col-sm-4">
+                        <div class="card h-60" style="width: 18rem; ">
+                            <div class="card-header"><b>${top.title}</div>
+                            <a href="/product/${top.id}"><img src="/images/${top.image.id}" class="card-img-top"></a>
+                            <div class="card-body"></div>
+                        </div>
+                    </div>
+                </div>
             <#else>
-                <h3>Подходящей одежды не нашлось :(</h3>
+                <div class="row row-cols-1 row-cols-md-1 g-4">
+                    <div class="col-sm-4">
+                        <div class="card h-60" style="width: 18rem; ">
+                            <div class="card-header">404</div>
+                            <div class="card-body">
+                                <h class="card-text">К сожалению, одежды не нашлось! :(</h>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </#if>
             <#if pants??>
-                <img src="/images/${pants.image.id}" height = "60px"/><br>
+                <div class="row row-cols-1 row-cols-md-1 g-4">
+                    <div class="col-sm-4">
+                        <div class="card h-60" style="width: 18rem; ">
+                            <div class="card-header"><b>${pants.title}</div>
+                            <a href="/product/${pants.id}"><img src="/images/${pants.image.id}" class="card-img-top"></a>
+                            <div class="card-body"></div>
+                        </div>
+                    </div>
+                </div>
             <#else>
-                <h3>Подходящей одежды не нашлось :(</h3>
+                <div class="row row-cols-1 row-cols-md-1 g-4">
+                    <div class="col-sm-4">
+                        <div class="card h-60" style="width: 18rem; ">
+                            <div class="card-header">404</div>
+                            <div class="card-body">
+                                <h class="card-text">К сожалению, одежды не нашлось! :(</h>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </#if>
             <#if shoes??>
-                <img src="/images/${shoes.image.id}" height = "60px"/><br>
+                <div class="row row-cols-1 row-cols-md-1 g-4">
+                    <div class="col-sm-4">
+                        <div class="card h-60" style="width: 18rem; ">
+                            <div class="card-header"><b>${shoes.title}</div>
+                            <a href="/product/${shoes.id}"><img src="/images/${shoes.image.id}" class="card-img-top"></a>
+                            <div class="card-body"></div>
+                        </div>
+                    </div>
+                </div>
             <#else>
-                <h3>Подходящей одежды не нашлось :(</h3>
+                <div class="row row-cols-1 row-cols-md-1 g-4">
+                    <div class="col-sm-4">
+                        <div class="card h-60" style="width: 18rem; ">
+                            <div class="card-header">404</div>
+                            <div class="card-body">
+                                <h class="card-text">К сожалению, одежды не нашлось! :(</h>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </#if>
         </td>
     </tr>

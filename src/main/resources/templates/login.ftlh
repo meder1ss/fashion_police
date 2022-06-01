@@ -22,7 +22,16 @@
 <body>
 <h1 align="center"><i>FASHION POLICE</i></h1><hr>
 <p class=mode>Модно, стильно, молодёжно!</p>
-
+<#if user.email??>
+<table align="center">
+    <tr>
+        <td colspan="2" align="center">
+            <br>
+            <h2>Привет, ${user.name}!</h2>
+        </td>
+    </tr>
+</table>
+<#else>
 <h3 align="center">Авторизация</h3>
 <br>
 
@@ -53,6 +62,7 @@
         </tr>
         <tr>
             <td colspan="2" align="center">
+                <br>
                 <button type="button" class="btn btn-outline-danger btn-sm">
                     <a href="/registration">Зарегистрироваться</a>
                 </button>
@@ -60,7 +70,7 @@
         </tr>
     </table>
 </form>
-
+</#if>
 <p><a href="../"><b>&#8592; На главную</b></a></p>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>

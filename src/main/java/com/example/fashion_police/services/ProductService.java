@@ -14,6 +14,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.security.Principal;
+import java.sql.Array;
 import java.util.*;
 import java.util.List;
 
@@ -25,7 +26,16 @@ public class ProductService {
     private final UserRepository userRepository;
 
     public List<Product> listProducts(String title) {
-        if (title != null) return productRepository.findByTitle(title);
+        if (title != null) {
+            List<Product> products = productRepository.findAll();
+            ArrayList<Product> res = new ArrayList<>();
+            for (Product i : products) {
+                if ((i.getTitle().toLowerCase()).contains(title.toLowerCase())) {
+                    res.add(i);
+                }
+            }
+            return res;
+        };
         return productRepository.findAll();
     }
 
@@ -255,22 +265,18 @@ public class ProductService {
                     if (weather_int >= 15 && weather_int <= 18) {
                         ArrayList<String> outfits = new ArrayList<>(Arrays.asList("Кожанка", "Кожаная куртка", "Джинсовка", "Джинсовая куртка", "Куртка", "Пальто", "Жакет", "Пиджак", "Блейзер"));
                         Product product = complementAnOutfitWithName(outfits, sex, "Осень", color, style, type);
-                        log.info("11111111111111111111111111111111111111111111 \n");
                         if (product != null) {
                             return product;
                         } else {
                             product = complementAnOutfitWithName(outfits, sex, "Деми-сезон", color, "Повседневный", type);
-                            log.info("111111111111111111111111111111111111111111111 \n");
                             if (product != null) {
                                 return product;
                             } else {
                                 product = complementAnOutfitWithName(outfits, "Унисекс", "Деми-сезон", color, "Повседневный", type);
-                                log.info("111111111111111111111111111111111111111111111 \n");
                                 if (product != null) {
                                     return product;
                                 } else {
                                     product = complementAnOutfit("Унисекс", "Лето", color, "Повседневный", type);
-                                    log.info("111111111111111111111111111111111111111111111 \n");
                                     if (product != null) {
                                         return product;
                                     } else {

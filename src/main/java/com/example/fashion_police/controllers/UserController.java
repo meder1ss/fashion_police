@@ -1,6 +1,7 @@
 package com.example.fashion_police.controllers;
 
 import com.example.fashion_police.models.User;
+import com.example.fashion_police.services.ProductService;
 import com.example.fashion_police.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -11,15 +12,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.security.Principal;
 import java.text.AttributedString;
 
 @Controller
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
+    private final ProductService productService;
 
     @GetMapping("/login")
-    public String login() {
+    public String login(Model model, Principal principal) {
+        model.addAttribute("user", productService.getUserByPrincipal(principal));
         return "login";
     }
 
