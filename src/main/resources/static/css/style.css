@@ -1,21 +1,44 @@
+h1 {font-size:18.5pt;}
+h2 {font-size:16.85pt;}
 
-#ulMain {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-}
+#footer {text-align:center; color:#777777; border-top:2px solid #888888;}
 
-#liMain {
-    float: left;
-}
+#table {background-color:#FFFFFF; border:3px solid #888888; width:1280px;}
 
-header {
-    display: block;
-    background-color: #d789a8;
-}
-.header-bg {
-    height: 405px;
-    text-align: center;
-}
+#td1 {text-align: right}
+#td2 {text-align: left}
+
+#imgS {margin-left:30px; margin-right:30px;}
+.imgL {float:left; margin-right:15px; border:1px solid #ddd; border-radius:10px; padding:5px; width:250px;}
+.imgR {float:right; margin-left:15px; border:1px solid #ddd; border-radius:10px; padding:5px; width:250px;}
+
+#imgInfo {border: 5px solid pink; border-radius: 4px; max-width: 500px; max-height: 500px}
+
+#caruselText {color:#FFFFFF; text-shadow:black 1px 1px 0, black -1px -1px 0,
+                                         black -1px 1px 0, black 1px -1px 0;}
+
+aside {border:5px solid pink; padding:0px; width: 1280px;}
+
+#ulMain {list-style-type:none; margin:0; padding:0; overflow:hidden; background-color:#333;}
+#liMain {float:left;}
+
+header {display:block; background-color:#d789a8;}
+
+.header-bg {height:405px; text-align:center;}
+
+#tableP {margin-left: 15px;}
+
+.divdiv {text-align:left; color:#800000; font-size: 14.5pt}
+
+.mode {text-align:center; color:#C71585; font-size:14.5pt; font-weight: bold;}
+
+#cont {min-height:500px;}
+
+#content {font-family:Verdana, sans-serif; text-align:justify; padding:15px;}
+
+table.text {width:  100%; border-spacing: 0; /* Расстояние между ячейками */}
+table.text tr td {width: 58%; /* Ширина ячеек */}
+td.rightcol {text-align: right;}
+
+#whiteColor {text-shadow:black 1px 1px 0, black -1px -1px 0,
+                         black -1px 1px 0, black 1px -1px 0;}

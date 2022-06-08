@@ -109,67 +109,67 @@ public class ProductController {
     String translation(String russianColor){
         String englishColor = "white";
         russianColor = russianColor.toLowerCase();
-        if ((russianColor == "черный") || (russianColor == "чёрный")) {
+        if (russianColor.equals("черный") || russianColor.equals("чёрный")) {
             englishColor = "black";
         }
-        if (russianColor == "голубой") {
+        if (russianColor.equals("голубой")) {
             englishColor = "blue";
         }
-        if (russianColor == "розовый") {
+        if (russianColor.equals("розовый")) {
             englishColor = "pink";
         }
-        if (russianColor == "бежевый") {
+        if (russianColor.equals("бежевый")) {
             englishColor = "beige";
         }
-        if (russianColor == "коричневый") {
+        if (russianColor.equals("коричневый")) {
             englishColor = "brown";
         }
-        if ((russianColor == "зеленый") || (russianColor == "салатовый") || (russianColor == "зелёный")) {
+        if ((russianColor.equals("зеленый")) || (russianColor.equals("салатовый")) || (russianColor.equals("зелёный"))) {
             englishColor = "green";
         }
-        if ((russianColor == "лаймовый") || (russianColor == "лайм")) {
+        if ((russianColor.equals("лаймовый")) || (russianColor.equals("лайм"))) {
             englishColor = "lime";
         }
-        if (russianColor == "синий") {
+        if (russianColor.equals("синий")) {
             englishColor = "navy";
         }
-        if (russianColor == "бирюзовый") {
+        if (russianColor.equals("бирюзовый")) {
             englishColor = "teal";
         }
-        if ((russianColor == "желтый") || (russianColor == "золотой") || (russianColor == "жёлтый") || (russianColor == "лимонный")) {
+        if (russianColor.equals("желтый") || russianColor.equals("золотой") || russianColor.equals("жёлтый") || russianColor.equals("лимонный")) {
             englishColor = "yellow";
         }
-        if (russianColor == "серый") {
+        if (russianColor.equals("серый")) {
             englishColor = "grey";
         }
-        if ((russianColor == "серебряный") || (russianColor == "серебристый"))  {
+        if ((russianColor.equals("серебряный")) || (russianColor.equals("серебристый")))  {
             englishColor = "silver";
         }
-        if (russianColor == "красный") {
+        if (russianColor.equals("красный")) {
             englishColor = "red";
         }
-        if ((russianColor == "бордовый") || (russianColor == "бордо")) {
+        if (russianColor.equals("бордовый") || russianColor.equals("бордо")) {
             englishColor = "maroon";
         }
-        if (russianColor == "оранжевый") {
+        if (russianColor.equals("оранжевый")) {
             englishColor = "orange";
         }
-        if (russianColor == "белый") {
+        if (russianColor.equals("белый")) {
             englishColor = "white";
         }
-        if ((russianColor == "фиолетовый") || (russianColor == "пурпур") || (russianColor == "пурпурный") || (russianColor == "сиреневый")) {
+        if (russianColor.equals("фиолетовый") || russianColor.equals("пурпур") || russianColor.equals("пурпурный") || russianColor.equals("сиреневый")) {
             englishColor = "purple";
         }
-        if (russianColor == "белый") {
+        if (russianColor.equals("белый")) {
             englishColor = "white";
         }
-        if ((russianColor == "оливковый") || (russianColor == "охра")){
+        if (russianColor.equals("оливковый") || russianColor.equals("охра")){
             englishColor = "olive";
         }
-        if (russianColor == "фуксия"){
+        if (russianColor.equals("фуксия")){
             englishColor = "fuchsia";
         }
-        if (russianColor == "аквамарин") {
+        if (russianColor.equals("аквамарин")) {
             englishColor = "aqua";
         }
         return englishColor;
